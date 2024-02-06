@@ -25,7 +25,6 @@ public class DatabaseConnection{
     static List<Product>  products  =  new ArrayList<Product>();
     static List<Order>    orders    =  new ArrayList<Order>();
     static List<Invoice>  invoices  =  new ArrayList<Invoice>();
-    static List<Cart>     carts     =  new ArrayList<Cart>();
 
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -125,28 +124,6 @@ public class DatabaseConnection{
     }
 
     public void Invoice_DELETE(String InvoiceID) throws Exception {
-
-    }
-//-------------------------------------------Carts Methods---------------------------------------------
-    public String Cart_SELECT() throws Exception {
-
-        return "";
-    }
-
-    public String Cart_SELECT(String CartID) throws Exception {
-
-        return "";
-    }
-
-    public void Cart_INSERT(Cart newCart) throws Exception {
-
-    }
-
-    public void Cart_UPDATE(Cart newCart) throws Exception {
-
-    }
-
-    public void Cart_DELETE(String CartID) throws Exception {
 
     }
 }

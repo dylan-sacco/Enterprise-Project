@@ -26,7 +26,6 @@ public class FellasWebServiceApplication {
     static List<Product>  products  =  new ArrayList<Product>();
     static List<Order>    orders    =  new ArrayList<Order>();
     static List<Invoice>  invoices  =  new ArrayList<Invoice>();
-    static List<Cart>     carts     =  new ArrayList<Cart>();
 
 	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -190,43 +189,6 @@ public class FellasWebServiceApplication {
 	}
 
 
-
-//-------------------------------------------Cart Methods-----------------------------------------------
-	@GetMapping("/cart")
-	public ResponseEntity<List<Cart>> getCart(@RequestHeader("Authorization") String authorization_header, @RequestParam(value = "CartId", required = false) String CartID){
-		if(!user_authenticated(authorization_header)){
-			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-		}
-
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-	}
-
-	@PostMapping("/cart")
-	public ResponseEntity<Cart> postCart(@RequestHeader("Authorization") String authorization_header, @RequestBody Cart cart) {
-		if(!user_authenticated(authorization_header)){
-			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-		}
-
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-	}
-
-	@PutMapping("/cart")
-	public ResponseEntity<Cart> putCart(@RequestHeader("Authorization") String authorization_header, @RequestBody Cart cart) {
-		if(!user_authenticated(authorization_header)){
-			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-		}
-
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-	}
-
-	@DeleteMapping("/cart")
-	public ResponseEntity<Cart> deleteCart(@RequestHeader("Authorization") String authorization_header, @RequestBody Cart cart) {
-		if(!user_authenticated(authorization_header)){
-			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-		}
-
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-	}
 
 
 
