@@ -23,7 +23,7 @@ CREATE TABLE "fellas"."Product" (
     "Name" NVARCHAR(255) NOT NULL,
     "Description" NVARCHAR(255) NOT NULL,
     "Price" DECIMAL(8, 2) NOT NULL,
-    "Image" BINARY(16) NOT NULL,
+    "Image" IMAGE NOT NULL,
     PRIMARY KEY ("Product_ID")
 );
 
@@ -37,3 +37,4 @@ CREATE TABLE "fellas"."Invoice" (
     FOREIGN KEY ("Order_ID") REFERENCES "fellas"."Order" ("Order_ID"),
     FOREIGN KEY ("Product_ID") REFERENCES "fellas"."Product" ("Product_ID")
 );
+
