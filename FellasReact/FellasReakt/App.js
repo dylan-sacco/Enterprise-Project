@@ -12,7 +12,7 @@ function Home({navigation}){
   <View style={styles.container}>
       <Text>Home Page Test</Text>
       <Button title="Go to Shopping" onPress={() => navigation.navigate('Shopping')}/>
-      <Button title="Go to Details" onPress={() => navigation.navigate('Cart')}/>
+      <Button title="Go to Cart" onPress={() => navigation.navigate('Cart')}/>
 
   </View>
   )
