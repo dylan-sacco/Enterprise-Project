@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import * as ReactNative from 'react-native';
+import { Button, View, Text, StyleSheet} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -8,24 +8,30 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //HOME PAGE
 function Home({navigation}){
+  return(
   <View style={styles.container}>
-      <text>Home Page Test</text>
+      <Text>Home Page Test</Text>
       <Button title="Go to Shopping" onPress={() => navigation.navigate('Shopping')}/>
       <Button title="Go to Details" onPress={() => navigation.navigate('Cart')}/>
 
   </View>
+  )
 }
 //SHOPPING PAGE
 function Shopping(){
+  return(
   <View style={styles.container}>
-      <text>Shopping Page Test</text>
+      <Text>Shopping Page Test</Text>
   </View>
+  )
 }
 //CART PAGE
 function Cart(){
+  return(
   <View style={styles.container}>
-      <text>Cart Page Test</text>
+      <Text>Cart Page Test</Text>
   </View>
+  )
 }
 
 
@@ -33,7 +39,7 @@ function Cart(){
 //this is for declaring the stack navigator
 const Stack = createNativeStackNavigator();
 
-function App() {
+export default function App() {
   return (
     //doc said we only need one nav container and all our interface code needs to be in it - Amir
   <NavigationContainer>
@@ -49,7 +55,7 @@ function App() {
   </NavigationContainer>
   );
 }
-export default App;
+
 
 
 //StyleSheets
