@@ -7,7 +7,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     INSERT INTO "fellas"."User" ("User_ID", "Name", "Address", "Email", "Password")
-    SELECT NEXT VALUE FOR "fellas"."User_Email_Seq", "Name", "Address", "Email", "Password"
+    SELECT NEXT VALUE FOR "fellas"."User_Seq", "Name", "Address", "Email", "Password"
     FROM INSERTED;
 END;
 

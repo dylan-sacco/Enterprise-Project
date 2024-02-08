@@ -5,7 +5,7 @@ CREATE TABLE "fellas"."User" (
     "User_ID" NVARCHAR(8) NOT NULL,
     "Name" NVARCHAR(255) NOT NULL,
     "Address" NVARCHAR(255) NOT NULL,
-    "Email" NVARCHAR NOT NULL,
+    "Email" NVARCHAR(255) NOT NULL,
     "Password" NVARCHAR(20) NOT NULL,
     PRIMARY KEY ("User_ID")
 );
@@ -37,4 +37,3 @@ CREATE TABLE "fellas"."Invoice" (
     FOREIGN KEY ("Order_ID") REFERENCES "fellas"."Order" ("Order_ID"),
     FOREIGN KEY ("Product_ID") REFERENCES "fellas"."Product" ("Product_ID")
 );
-
