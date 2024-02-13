@@ -1,6 +1,7 @@
 package com.fellas.fellas_web_service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import com.fellas.fellas_web_service.Tables.*;
 import com.google.gson.Gson;
@@ -41,7 +42,30 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		String json = "";
+		
+		try {
+			if(UserID == null){
+				json = database_connection.User_SELECT();
+			}
+			else{
+				json = database_connection.User_SELECT(UserID);
+			}
+
+			if(json == null){
+				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+			else{
+				users = Arrays.asList(gson.fromJson(json, User[].class));
+
+				return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PostMapping("/user")
