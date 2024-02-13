@@ -69,7 +69,7 @@ local.properties
 !/packages/react-native/android/README.md
 
 # Node
-node_modules
+# node_modules ### thes is a headacke
 *.log
 .nvm
 package-lock.json
