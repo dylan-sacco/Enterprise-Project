@@ -1,8 +1,82 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, Platform, 
+  ScrollView, Button, TouchableOpacity, TextInput
+} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductBubble from './Components.js';
+
+import './firebaseConfig.js';
+import {app, auth} from './firebaseConfig.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+
+let isSignedIn = false;
+
+console.log(auth);
+
+function SignIn() {
+  const [email, setEmail] = useState('Dmsacco0807@gmail.com');
+  const [password, setPassword] = useState('password');
+
+  const login = async () => {
+    // empty for now
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      // console.log(user);
+      console.log('Signed in');
+      isSignedIn = true;
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+
+    });
+  }
+  const signup = async () => {
+    // empty for now
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        // console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        // ..
+      });
+  }
+
+  return (
+    <View style={{padding:20}}>
+      <Text>Sign In</Text>
+      <Text>Email</Text>
+      <TextInput
+        autoComplete='email'
+        placeholder="Email"
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+        onChangeText={text => setEmail(text)}
+        value={email}
+      />
+      <Text>Password</Text>
+      <TextInput
+        placeholder="Password"
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+        secureTextEntry={true}
+        onChangeText={text => setPassword(text)}
+        value={password}
+      />
+      <Button title="Log In" onPress={login} />
+      <Button title="Sign Up" onPress={signup} />
+    </View>
+  );
+}
 
 function HomeScreen({ navigation }) {
   return (
@@ -60,7 +134,6 @@ function HomeScreen({ navigation }) {
   );
 }
 
-
 function ProductScreen({ route, navigation }) {
   const { productId, url, price, productName} = route.params;
   console.log(route.params);
@@ -97,11 +170,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        {isSignedIn ? (
+          <Stack.Screen name="Home" component={HomeScreen} />
+        ) : (
+          <Stack.Screen name="SignIn" component={SignIn} />
+        )}
+        {/* <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="Home" component={HomeScreen} /> 
+         */}
         <Stack.Screen name="Products" component={ProductScreen} initialParams={{productId:'ca724'}} />
       </Stack.Navigator>
     </NavigationContainer>
-    
   );
 }
 
