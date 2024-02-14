@@ -7,7 +7,7 @@ SELECT * FROM "fellas"."User" WHERE User_ID = 'EXAMPLE'
 --"SELECT * FROM \"fellas\".\"User\" WHERE User_ID = '" + UserID + "';"
 INSERT INTO "fellas"."User" (Name, Address, Email, Password)
 	VALUES ('EXAMPLE', 'EXAMPLE', 'EXAMPLE', 'EXAMPLE');
---"INSERT INTO \"fellas\".\"User\" (Name, Address, Email, Password) VALUES ('" + Name + "', '" + Address + "', '" + Email + "', '" + Password + "');"
+--"INSERT INTO \"fellas\".\"User\" (Name, Address, Email, Password) VALUES ( ?, ?, ?, ?);"
 UPDATE "fellas"."User"
 	SET "Name" = 'NEW EXAMPLE',
 		"Address" = 'NEW EXAMPLE',

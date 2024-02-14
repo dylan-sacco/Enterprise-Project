@@ -23,7 +23,7 @@ CREATE TABLE "fellas"."Product" (
     "Name" NVARCHAR(255) NOT NULL,
     "Description" NVARCHAR(255) NOT NULL,
     "Price" DECIMAL(8, 2) NOT NULL,
-    "Image" IMAGE NOT NULL,
+    "Image" VARBINARY(MAX) NOT NULL,
     PRIMARY KEY ("Product_ID")
 );
 

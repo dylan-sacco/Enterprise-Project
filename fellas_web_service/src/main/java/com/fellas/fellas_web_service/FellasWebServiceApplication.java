@@ -69,21 +69,47 @@ public class FellasWebServiceApplication {
 	}
 
 	@PostMapping("/user")
-	public ResponseEntity<User> postUser(@RequestHeader("Authorization") String authorization_header, @RequestBody User user) {
+	public ResponseEntity<List<User>> postUser(@RequestHeader("Authorization") String authorization_header, @RequestBody String newUser) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		users = Arrays.asList(gson.fromJson(newUser, User[].class));
+
+		try {
+			for (User user : users){
+				database_connection.User_INSERT(user);
+			}
+
+			return new ResponseEntity<>(users, HttpStatus.CREATED);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PutMapping("/user")
-	public ResponseEntity<User> putUser(@RequestHeader("Authorization") String authorization_header, @RequestBody User user) {
+	public ResponseEntity<User> putUser(@RequestHeader("Authorization") String authorization_header, @RequestBody String newUser) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		users = Arrays.asList(gson.fromJson(newUser, User[].class));
+
+		try {
+			for (User user : users){
+				database_connection.User_UPDATE(user);
+			}
+
+			return new ResponseEntity<>(users.get(0), HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@DeleteMapping("/user")
@@ -92,7 +118,16 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		try {
+			database_connection.User_DELETE(UserID);
+
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 
@@ -104,25 +139,74 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		String json = "";
+
+		try {
+			if(ProductID == null){
+				json = database_connection.Product_SELECT();
+			}
+			else{
+				json = database_connection.Product_SELECT(ProductID);
+			}
+
+			if(json == null){
+				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+			else{
+				products = Arrays.asList(gson.fromJson(json, Product[].class));
+
+				return new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PostMapping("/product")
-	public ResponseEntity<Product> postProduct(@RequestHeader("Authorization") String authorization_header, @RequestBody Product product) {
+	public ResponseEntity<Product> postProduct(@RequestHeader("Authorization") String authorization_header, @RequestBody String product) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		products = Arrays.asList(gson.fromJson(product, Product[].class));
+
+		try {
+			for (Product product_ : products){
+				database_connection.Product_INSERT(product_);
+			}
+
+			return new ResponseEntity<>(products.get(0), HttpStatus.CREATED);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PutMapping("/product")
-	public ResponseEntity<Product> putProduct(@RequestHeader("Authorization") String authorization_header, @RequestBody Product product) {
+	public ResponseEntity<Product> putProduct(@RequestHeader("Authorization") String authorization_header, @RequestBody String product) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		products = Arrays.asList(gson.fromJson(product, Product[].class));
+
+		try {
+			for (Product product_ : products){
+				database_connection.Product_UPDATE(product_);
+			}
+
+			return new ResponseEntity<>(products.get(0), HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@DeleteMapping("/product")
@@ -131,7 +215,16 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		try {
+			database_connection.Product_DELETE(product.getProductID());
+
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 
@@ -143,25 +236,74 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		String json = "";
+
+		try {
+			if(OrderID == null){
+				json = database_connection.Order_SELECT();
+			}
+			else{
+				json = database_connection.Order_SELECT(OrderID);
+			}
+
+			if(json == null){
+				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+			else{
+				orders = Arrays.asList(gson.fromJson(json, Order[].class));
+
+				return new ResponseEntity<List<Order>>(orders, HttpStatus.OK);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PostMapping("/order")
-	public ResponseEntity<Order> postOrder(@RequestHeader("Authorization") String authorization_header, @RequestBody Order order) {
+	public ResponseEntity<Order> postOrder(@RequestHeader("Authorization") String authorization_header, @RequestBody String newOrder) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		orders = Arrays.asList(gson.fromJson(newOrder, Order[].class));
+
+		try {
+			for (Order order : orders){
+				database_connection.Order_INSERT(order);
+			}
+
+			return new ResponseEntity<>(orders.get(0), HttpStatus.CREATED);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PutMapping("/order")
-	public ResponseEntity<Order> putOrder(@RequestHeader("Authorization") String authorization_header, @RequestBody Order order) {
+	public ResponseEntity<Order> putOrder(@RequestHeader("Authorization") String authorization_header, @RequestBody String newOrder) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		orders = Arrays.asList(gson.fromJson(newOrder, Order[].class));
+
+		try {
+			for (Order order : orders){
+				database_connection.Order_UPDATE(order);
+			}
+
+			return new ResponseEntity<>(orders.get(0), HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@DeleteMapping("/order")
@@ -170,7 +312,16 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		try {
+			database_connection.Order_DELETE(order.getOrderID());
+
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 
@@ -182,25 +333,75 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		String json = "";
+
+		try{
+			if(InvoiceID == null){
+				json = database_connection.Invoice_SELECT();
+			}
+			else{
+				json = database_connection.Invoice_SELECT(InvoiceID);
+			}
+
+			if(json == null){
+				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+			else{
+				invoices = Arrays.asList(gson.fromJson(json, Invoice[].class));
+
+				return new ResponseEntity<List<Invoice>>(invoices, HttpStatus.OK);
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		}
 	}
 
 	@PostMapping("/invoice")
-	public ResponseEntity<Invoice> postInvoice(@RequestHeader("Authorization") String authorization_header, @RequestBody Invoice invoice) {
+	public ResponseEntity<Invoice> postInvoice(@RequestHeader("Authorization") String authorization_header, @RequestBody String newInvoice) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		invoices = Arrays.asList(gson.fromJson(newInvoice, Invoice[].class));
+
+		try {
+			for (Invoice invoice : invoices){
+				database_connection.Invoice_INSERT(invoice);
+			}
+
+			return new ResponseEntity<>(invoices.get(0), HttpStatus.CREATED);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@PutMapping("/invoice")
-	public ResponseEntity<Invoice> putInvoice(@RequestHeader("Authorization") String authorization_header, @RequestBody Invoice invoice) {
+	public ResponseEntity<Invoice> putInvoice(@RequestHeader("Authorization") String authorization_header, @RequestBody String newInvoice) {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		invoices = Arrays.asList(gson.fromJson(newInvoice, Invoice[].class));
+
+		try {
+			for (Invoice invoice : invoices){
+				database_connection.Invoice_UPDATE(invoice);
+			}
+
+			return new ResponseEntity<>(invoices.get(0), HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@DeleteMapping("/invoice")
@@ -209,7 +410,16 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
 
-		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		try {
+			database_connection.Invoice_DELETE(invoice.getInvoiceID());
+
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 
