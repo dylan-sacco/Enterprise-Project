@@ -26,7 +26,7 @@ function SignIn() {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      // console.log(user);
+      console.log(user);
       console.log('Signed in');
       isSignedIn = true;
     })
@@ -44,6 +44,7 @@ function SignIn() {
         // Signed up 
         const user = userCredential.user;
         // console.log(user);
+        console.log('Signed up');
       })
       .catch((error) => {
         const errorCode = error.code;
