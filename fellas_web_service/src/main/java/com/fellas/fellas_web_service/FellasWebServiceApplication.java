@@ -1,5 +1,6 @@
 package com.fellas.fellas_web_service;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import com.fellas.fellas_web_service.Tables.*;
@@ -84,10 +85,14 @@ public class FellasWebServiceApplication {
 	}
 
 	@PostMapping("/product")
-	public ResponseEntity<Product> postProduct(@RequestHeader("Authorization") String authorization_header, @RequestBody Product product) {
+	public ResponseEntity<Product> postProduct(
+		@RequestHeader("Authorization") String authorization_header, @RequestBody Product product
+	) throws Exception {
 		if(!user_authenticated(authorization_header)){
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}
+
+		PreparedStatement statement = database_connection.connection.prepareStatement("INSERT INTO products (product_id, product_name, product_price, product_description, product_stock) VALUES (?, ?, ?, ?, ?)");
 
 		return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 	}
