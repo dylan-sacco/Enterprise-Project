@@ -17,7 +17,7 @@ import com.google.gson.GsonBuilder;
 public class DatabaseConnection{
     final static String connectionString = "jdbc:sqlserver://demoserverball.database.windows.net:1433;database=demo;user=jball@demoserverball;password=Baberuth#6;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;";
 
-    static Connection connection;
+    static public Connection connection;
     static Statement statement;
     static PreparedStatement preparedStatement;
     static ResultSet resultSet; 

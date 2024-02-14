@@ -1,5 +1,6 @@
 package com.fellas.fellas_web_service;
 
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
