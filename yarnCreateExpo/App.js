@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Platform, 
-  ScrollView, Button, TouchableOpacity, TextInput
+import  {  StyleSheet, Text, View, Image, Platform, 
+        ScrollView, Button, TouchableOpacity, TextInput
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -19,6 +19,9 @@ console.log(auth);
 function SignIn() {
   const [email, setEmail] = useState('Dmsacco0807@gmail.com');
   const [password, setPassword] = useState('password');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
 
   const login = async () => {
     // empty for now
@@ -33,8 +36,11 @@ function SignIn() {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorMessage);
-
+      if (errorCode === 'auth/invalid-email') {
+        setEmailError(errorMessage);
+      } else{
+        setEmailError('');
+      }
     });
   }
   const signup = async () => {
@@ -50,6 +56,11 @@ function SignIn() {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
+        if (errorCode === 'auth/invalid-email') {
+          setEmailError(errorMessage);
+        } else{
+          setEmailError('');
+        }
         // ..
       });
   }
@@ -58,6 +69,7 @@ function SignIn() {
     <View style={{padding:20}}>
       <Text>Sign In</Text>
       <Text>Email</Text>
+      {(emailError) ? <Text>{emailError}</Text> : null}
       <TextInput
         autoComplete='email'
         placeholder="Email"
