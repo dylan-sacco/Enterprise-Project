@@ -143,6 +143,18 @@ public class DatabaseConnection{
         return json;
     }
 
+    public byte[] Product_SELECT_Image(String ProductID) throws Exception {
+        sql = "SELECT Image FROM \"fellas\".\"Product\" WHERE Product_ID = '" + ProductID + "';";
+        resultSet = statement.executeQuery(sql);
+
+        byte[] image = null;
+        while(resultSet.next()){
+            image = resultSet.getBytes("Image");
+        }
+
+        return image;
+    }
+
     public void Product_INSERT(Product newProduct) throws Exception {
         sql = "INSERT INTO \"fellas\".\"Product\" (Name, Description, Price, Image) VALUES (?, ?, ?, ?);";
 

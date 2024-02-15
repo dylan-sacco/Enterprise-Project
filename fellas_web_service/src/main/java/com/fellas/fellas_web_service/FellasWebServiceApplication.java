@@ -1,9 +1,9 @@
 package com.fellas.fellas_web_service;
 
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import com.fellas.fellas_web_service.Tables.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -11,8 +11,10 @@ import com.google.gson.GsonBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 @SpringBootApplication
 @RestController
@@ -165,6 +167,34 @@ public class FellasWebServiceApplication {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	@GetMapping(value = "/product/image", produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getProductImage(@RequestHeader("Authorization") String authorization_header, @RequestParam(value = "ProductId", required = true) String ProductID){
+		if(!user_authenticated(authorization_header)){
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+
+		byte[] product_image = null;
+
+		try {
+			product_image = database_connection.Product_SELECT_Image(ProductID);
+
+			if(product_image == null){
+				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+			else{
+
+				return new ResponseEntity<byte[]>(product_image, HttpStatus.OK);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+	}
+	
 
 	@PostMapping("/product")
 	public ResponseEntity<Product> postProduct(@RequestHeader("Authorization") String authorization_header, @RequestBody String product) {
