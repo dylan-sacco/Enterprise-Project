@@ -34,14 +34,11 @@ function SignIn() {
       isSignedIn = true;
     })
     .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      if (errorCode === 'auth/invalid-email') {
-        setEmailError(errorMessage);
-      } else{
-        setEmailError('');
-      }
+      const { code, message } = error;
+      let formattedCode = code !== null ? code.replace('auth/', '').replace(/-/g, ' ').toUpperCase() : '';
+      setEmailError(formattedCode);
     });
+    
   }
   const signup = async () => {
     // empty for now
@@ -53,23 +50,18 @@ function SignIn() {
         console.log('Signed up');
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        if (errorCode === 'auth/invalid-email') {
-          setEmailError(errorMessage);
-        } else{
-          setEmailError('');
-        }
-        // ..
+        const { code, message } = error;
+        let formattedCode = code !== null ? code.replace('auth/', '').replace(/-/g, ' ').toUpperCase() : '';
+        setEmailError(formattedCode);
       });
+      
   }
 
   return (
     <View style={{padding:20}}>
       <Text>Sign In</Text>
       <Text>Email</Text>
-      {(emailError) ? <Text>{emailError}</Text> : null}
+      
       <TextInput
         autoComplete='email'
         placeholder="Email"
@@ -85,6 +77,7 @@ function SignIn() {
         onChangeText={text => setPassword(text)}
         value={password}
       />
+      {(emailError) ? <Text style={{color: 'red'}}>{emailError}</Text> : null}
       <Button title="Log In" onPress={login} />
       <Button title="Sign Up" onPress={signup} />
     </View>
