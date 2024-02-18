@@ -1,6 +1,10 @@
 // Components.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Platform, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+// https://reactnavigation.org/docs/connecting-navigation-prop
+// allows me to not have to pass in navigation as a prop every time i use the damn object
+import { useNavigation } from '@react-navigation/native';
+
 
 const ProductBubbleStyles = StyleSheet.create({
     touch:{
@@ -62,10 +66,11 @@ const ProductBubbleStyles = StyleSheet.create({
   
 });
 const ProductBubble = (props) => {
+    const navigation = useNavigation(); 
     function onPress() {
     //   console.log('Pressed ', props.name, ' for $', props.price, '!');
     //   console.log("this is where we would navigate to the product page");
-        props.navigation.push(
+        navigation.push(
         'Products', {
             productId: 'ca724', 
             productName: props.name, 
@@ -93,5 +98,38 @@ const ProductBubble = (props) => {
 };
 
 
+const CheckBoxStyles = StyleSheet.create({
+    container: {
+        height: 50,
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    text: {
+        color: 'black',
+        fontWeight: 'bold',
+    },
+    checkBox: {
+        width: 30,
+        height: 30,
+        borderRadius: 5,
+        borderWidth: 2,
+        borderColor: 'black',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
+const CheckBox = (props) => {
+    const [isChecked, setIsChecked] = useState(false);
+    return (
+        <View style={CheckBoxStyles.container}>
+            <TouchableOpacity style={CheckBoxStyles.CheckBox} > 
+                <Text style={CheckBoxStyles.text}>X</Text>
+            </TouchableOpacity>
+            <Text style={CheckBoxStyles.text}>Checkbox</Text>
+        </View>
+    );
+};
 
-export default ProductBubble;
+export { ProductBubble, CheckBox }; 

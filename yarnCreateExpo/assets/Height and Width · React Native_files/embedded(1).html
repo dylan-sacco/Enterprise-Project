@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<!-- saved from url=(0210)https://snack.expo.dev/embedded?iframeId=y416zztk0e&preview=true&platform=web&supportedPlatforms=ios,android,web&name=Flex%20Dimensions&description=Example%20usage&theme=light&deviceFrame=false&waitForData=true -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="module" id="truffle-injected" data-runtime="bkkjeefjfjcfdfifddmkdmcpmaakmelp" src="chrome-extension://bkkjeefjfjcfdfifddmkdmcpmaakmelp/contexts/all/injected-script/index.js"></script><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"><title>Flex Dimensions - Snack</title><meta name="description" content="Write code in Expo&#39;s online editor and instantly use it on your phone."><meta property="og:url" content="https://snack.expo.dev"><meta property="og:title" content="Flex Dimensions - Snack"><meta property="og:description" content="Write code in Expo&#39;s online editor and instantly use it on your phone."><meta property="og:type" content="website"><meta property="og:image" content="https://s3.amazonaws.com/exp-brand-assets/SnackIcon_200.png"><meta property="og:image:width" content="200"><meta property="og:image:height" content="200"><meta name="twitter:card" content="summary"><meta name="twitter:site" content="@expo"><meta name="twitter:title" content="Flex Dimensions - Snack"><meta name="twitter:description" content="Write code in Expo&#39;s online editor and instantly use it on your phone."><meta name="twitter:image" content="https://s3.amazonaws.com/exp-brand-assets/SnackIcon_200.png"><meta name="robots" content="all"><meta name="google-site-verification" content="Fh25fNM-buRYptb-TO6MVgOjXGzdhmAnRgIC7sdrmbw"><link rel="shortcut icon" href="https://snack.expo.dev/favicon.ico"><link rel="stylesheet" href="./css"><link rel="stylesheet" href="./normalize.min.css"><style type="text/css">
+              :root {
+                --font-normal: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                --font-monospace: 'SF Mono', Monaco, Consolas, 'Liberation Mono', 'Courier New',
+                  monospace;
+              }
+
+              html {
+                box-sizing: border-box;
+              }
+
+              *,
+              *:before,
+              *:after {
+                box-sizing: inherit;
+              }
+
+              *:focus {
+                outline: none;
+              }
+
+              *:focus-visible {
+                outline: auto;
+              }
+
+              html,
+              body {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+              }
+
+              body {
+                font-family: var(--font-normal);
+                font-size: 14px;
+                line-height: 1.42857143;
+                overscroll-behavior: none;
+              }
+
+              div {
+                scrollbar-width: thin;
+                scrollbar-color: var(--color-disabled) var(--color-background);
+              }
+
+              @media (hover) {
+                ::-webkit-scrollbar {
+                  width: 12px;
+                  height: 12px;
+                  background: var(--color-background);
+                }
+                ::-webkit-scrollbar-thumb {
+                  background: var(--color-disabled);
+                  border-radius: 10px;
+                  border: 3px var(--color-background) solid;
+                }
+              }
+
+              button,
+              input,
+              select,
+              textarea {
+                font: inherit;
+                color: inherit;
+                line-height: inherit;
+              }
+
+              button {
+                cursor: pointer;
+              }
+
+              button[disabled] {
+                cursor: default;
+              }
+
+              #root {
+                height: 100vh;
+              }
+
+              a {
+                color: #4099ff;
+              }
+            </style><style type="text/css" data-aphrodite="true">._5qz8rht{height:100% !important;width:100% !important;--color-primary:#0081f1 !important;--color-secondary:#687076 !important;--color-error:#cd2b31 !important;--color-warning:#946800 !important;--color-success:#299764 !important;--color-primary-text:#ffffff !important;--color-secondary-text:#ffffff !important;--color-error-text:#ffffff !important;--color-warning-text:#ffffff !important;--color-success-text:#ffffff !important;--color-text:#11181c !important;--color-soft:#687076 !important;--color-soft-text:#ffffff !important;--color-background:#fbfcfd !important;--color-content:#ffffff !important;--color-hover:#f8f9fa !important;--color-disabled:#fbfcfd !important;--color-selected:#e6e8eb !important;--color-selected-text:#ffffff !important;--color-border:#d7dbdf !important;--color-border-editor:#dfe3e6 !important;--shadow-popover:0 15px 25px rgba(0, 0, 0, 0.12), 0 5px 10px rgba(0, 0, 0, 0.05) !important;--shadow-small:0 3px 6px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.07) !important;}._1pcb09u{-webkit-box-direction:normal !important;-webkit-box-orient:vertical !important;display:-webkit-box !important;display:-moz-box !important;display:-ms-flexbox !important;display:-webkit-flex !important;display:flex !important;-webkit-flex-direction:column !important;-ms-flex-direction:column !important;flex-direction:column !important;height:100% !important;width:100% !important;overflow:hidden !important;background-color:var(--color-background) !important;color:var(--color-text) !important;}@keyframes keyframe_9gmgni{0%{-webkit-transform:scale3d(0, 1, 1);-ms-transform:scale3d(0, 1, 1);transform:scale3d(0, 1, 1);opacity:1;}75%{-webkit-transform:scale3d(1, 1, 1);-ms-transform:scale3d(1, 1, 1);transform:scale3d(1, 1, 1);opacity:1;}100%{-webkit-transform:scale3d(1, 1, 1);-ms-transform:scale3d(1, 1, 1);transform:scale3d(1, 1, 1);opacity:0;}}._n39zzn{position:absolute !important;left:0px !important;right:0px !important;height:2px !important;z-index:1 !important;background-color:var(--color-primary) !important;-webkit-transform:scale3d(0, 1, 1) !important;-ms-transform:scale3d(0, 1, 1) !important;transform:scale3d(0, 1, 1) !important;-webkit-transform-origin:top left !important;-ms-transform-origin:top left !important;transform-origin:top left !important;-webkit-animation-name:keyframe_9gmgni !important;animation-name:keyframe_9gmgni !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;}._1ni954r{-webkit-box-pack:justify !important;-ms-flex-pack:justify !important;-webkit-box-align:center !important;-ms-flex-align:center !important;-webkit-box-direction:normal !important;-webkit-box-orient:horizontal !important;display:-webkit-box !important;display:-moz-box !important;display:-ms-flexbox !important;display:-webkit-flex !important;display:flex !important;-webkit-flex-direction:row !important;-ms-flex-direction:row !important;flex-direction:row !important;-webkit-align-items:center !important;align-items:center !important;-webkit-justify-content:space-between !important;justify-content:space-between !important;padding:4px !important;height:48px !important;background-color:var(--color-content) !important;border-bottom:1px solid var(--color-border) !important;color:var(--color-text) !important;}._1c40t29{-webkit-box-pack:center !important;-ms-flex-pack:center !important;-webkit-box-align:center !important;-ms-flex-align:center !important;display:-webkit-box !important;display:-moz-box !important;display:-ms-flexbox !important;display:-webkit-flex !important;display:flex !important;height:100% !important;width:100% !important;-webkit-align-items:center !important;align-items:center !important;-webkit-justify-content:center !important;justify-content:center !important;}._4w0mhx{-webkit-transform:scale(0.4) !important;-ms-transform:scale(0.4) !important;transform:scale(0.4) !important;opacity:0.2 !important;}._p6qm3x{position:relative !important;height:182px !important;width:182px !important;overflow:hidden !important;}@keyframes keyframe_1ysemx{0%{opacity:0;}39.9%{opacity:0;}40%{-webkit-transform:translate3d(78px, 68.5px, 0);-ms-transform:translate3d(78px, 68.5px, 0);transform:translate3d(78px, 68.5px, 0);opacity:1;}50%{-webkit-transform:translate3d(39px, 46.5px, 0);-ms-transform:translate3d(39px, 46.5px, 0);transform:translate3d(39px, 46.5px, 0);}}._1b0gwq5m{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(39px, 46.5px, 0) !important;-ms-transform:translate3d(39px, 46.5px, 0) !important;transform:translate3d(39px, 46.5px, 0) !important;-webkit-animation-name:keyframe_1ysemx !important;animation-name:keyframe_1ysemx !important;}@keyframes keyframe_1a1qkd5{0%{opacity:0;}49.9%{opacity:0;}50%{-webkit-transform:translate3d(39px, 46.5px, 0);-ms-transform:translate3d(39px, 46.5px, 0);transform:translate3d(39px, 46.5px, 0);opacity:1;}60%{-webkit-transform:translate3d(39px, 0px, 0);-ms-transform:translate3d(39px, 0px, 0);transform:translate3d(39px, 0px, 0);}}._14l78d6g{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(39px, 0px, 0) !important;-ms-transform:translate3d(39px, 0px, 0) !important;transform:translate3d(39px, 0px, 0) !important;-webkit-animation-name:keyframe_1a1qkd5 !important;animation-name:keyframe_1a1qkd5 !important;}@keyframes keyframe_10mcliz{}._1tvj80n9{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(0, 68.5px, 0) !important;-ms-transform:translate3d(0, 68.5px, 0) !important;transform:translate3d(0, 68.5px, 0) !important;-webkit-animation-name:keyframe_10mcliz !important;animation-name:keyframe_10mcliz !important;}@keyframes keyframe_1omr31l{0%{opacity:0;}29.9%{opacity:0;}30%{-webkit-transform:translate3d(39px, 90px, 0);-ms-transform:translate3d(39px, 90px, 0);transform:translate3d(39px, 90px, 0);opacity:1;}40%{-webkit-transform:translate3d(78px, 68.5px, 0);-ms-transform:translate3d(78px, 68.5px, 0);transform:translate3d(78px, 68.5px, 0);}}._1cqt99fk{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(78px, 68.5px, 0) !important;-ms-transform:translate3d(78px, 68.5px, 0) !important;transform:translate3d(78px, 68.5px, 0) !important;-webkit-animation-name:keyframe_1omr31l !important;animation-name:keyframe_1omr31l !important;}@keyframes keyframe_1pbmn7q{0%{-webkit-transform:translate3d(0, 68.5px, 0);-ms-transform:translate3d(0, 68.5px, 0);transform:translate3d(0, 68.5px, 0);}20%{-webkit-transform:translate3d(0, 68.5px, 0);-ms-transform:translate3d(0, 68.5px, 0);transform:translate3d(0, 68.5px, 0);}30%{-webkit-transform:translate3d(39px, 90px, 0);-ms-transform:translate3d(39px, 90px, 0);transform:translate3d(39px, 90px, 0);}}._1fho7xh9{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(39px, 90px, 0) !important;-ms-transform:translate3d(39px, 90px, 0) !important;transform:translate3d(39px, 90px, 0) !important;-webkit-animation-name:keyframe_1pbmn7q !important;animation-name:keyframe_1pbmn7q !important;}@keyframes keyframe_b5qg5v{0%{opacity:0;}59.9%{opacity:0;}60%{-webkit-transform:translate3d(39px, 0px, 0);-ms-transform:translate3d(39px, 0px, 0);transform:translate3d(39px, 0px, 0);opacity:1;}70%{-webkit-transform:translate3d(0, 23px, 0);-ms-transform:translate3d(0, 23px, 0);transform:translate3d(0, 23px, 0);}}._l9xbyq9{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(0, 23px, 0) !important;-ms-transform:translate3d(0, 23px, 0) !important;transform:translate3d(0, 23px, 0) !important;-webkit-animation-name:keyframe_b5qg5v !important;animation-name:keyframe_b5qg5v !important;}@keyframes keyframe_841g8u{0%{opacity:0;}69.9%{opacity:0;}70%{-webkit-transform:translate3d(0, 23px, 0);-ms-transform:translate3d(0, 23px, 0);transform:translate3d(0, 23px, 0);opacity:1;}80%{-webkit-transform:translate3d(39px, 42.5px, 0);-ms-transform:translate3d(39px, 42.5px, 0);transform:translate3d(39px, 42.5px, 0);}}._1oufavzh{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(39px, 42.5px, 0) !important;-ms-transform:translate3d(39px, 42.5px, 0) !important;transform:translate3d(39px, 42.5px, 0) !important;-webkit-animation-name:keyframe_841g8u !important;animation-name:keyframe_841g8u !important;}@keyframes keyframe_1x1yick{0%{-webkit-transform:translate3d(133px, 12.5px, 0) scale(0);-ms-transform:translate3d(133px, 12.5px, 0) scale(0);transform:translate3d(133px, 12.5px, 0) scale(0);}80%{-webkit-transform:translate3d(133px, 12.5px, 0) scale(0);-ms-transform:translate3d(133px, 12.5px, 0) scale(0);transform:translate3d(133px, 12.5px, 0) scale(0);}90%{-webkit-transform:translate3d(133px, 12.5px, 0) scale(1);-ms-transform:translate3d(133px, 12.5px, 0) scale(1);transform:translate3d(133px, 12.5px, 0) scale(1);}}._ce1yvye{position:absolute !important;top:0px !important;left:0px !important;-webkit-animation-duration:4s !important;animation-duration:4s !important;-webkit-animation-delay:1s !important;animation-delay:1s !important;-webkit-animation-iteration-count:infinite !important;animation-iteration-count:infinite !important;-webkit-animation-direction:alternate-reverse !important;animation-direction:alternate-reverse !important;-webkit-transform:translate3d(133px, 12.5px, 0) !important;-ms-transform:translate3d(133px, 12.5px, 0) !important;transform:translate3d(133px, 12.5px, 0) !important;-webkit-animation-name:keyframe_1x1yick !important;animation-name:keyframe_1x1yick !important;}._sasvqr{-webkit-box-align:center !important;-ms-flex-align:center !important;-webkit-box-direction:normal !important;-webkit-box-orient:horizontal !important;display:-webkit-box !important;display:-moz-box !important;display:-ms-flexbox !important;display:-webkit-flex !important;display:flex !important;-webkit-flex-direction:row !important;-ms-flex-direction:row !important;flex-direction:row !important;-webkit-align-items:center !important;align-items:center !important;color:var(--color-disabled) !important;-webkit-transition:background .2s !important;-moz-transition:background .2s !important;transition:background .2s !important;padding:0 4px !important;font-size:12px !important;}</style><script async="" src="./analytics.js"></script><script type="text/javascript" integrity="sha384-girahbTbYZ9tT03PWWj0mEVgyxtZoyDF9KVZdL+R53PP5wCY0PiVUKq0jeRlMx9M" crossorigin="anonymous" async="" src="./amplitude-7.2.1-min.gz.js"></script><script>
+               if (window.location.search.indexOf('hideQueryParams=true') >= 0) {
+                 history.replaceState(null, document.title, window.location.pathname);
+               }
+               window.__INITIAL_DATA__ = {"data":{"type":"success","defaults":{"name":"bossy red carrot","channel":"apbjrGi8GS"}},"splitTestSettings":{"defaultConnectionMethod":"qr-code","authFlow":"save2","snackFirstSeen":"2024-02-16"},"queryParams":{"iframeId":"y416zztk0e","preview":"true","platform":"web","supportedPlatforms":"ios,android,web","name":"Flex Dimensions","description":"Example usage","theme":"light","deviceFrame":"false","waitForData":"true"},"postData":{"iframeId":"y416zztk0e","preview":"true","platform":"web","supportedPlatforms":"ios,android,web","name":"Flex Dimensions","description":"Example usage","theme":"light","deviceFrame":"false","waitForData":"true"}} </script><script charset="utf-8" src="./0.da508e33fda8e86999db.chunk.cached.js"></script><script charset="utf-8" src="./3.da508e33fda8e86999db.chunk.cached.js"></script><script charset="utf-8" src="./2.da508e33fda8e86999db.chunk.cached.js"></script><script charset="utf-8" src="./13.da508e33fda8e86999db.chunk.cached.js"></script><link charset="utf-8" rel="preload" as="script" href="./1.da508e33fda8e86999db.chunk.cached.js"><link charset="utf-8" rel="preload" as="script" href="./9.da508e33fda8e86999db.chunk.cached.js"><script charset="utf-8" src="./1.da508e33fda8e86999db.chunk.cached.js"></script><script charset="utf-8" src="./9.da508e33fda8e86999db.chunk.cached.js"></script><script charset="utf-8" src="./29.da508e33fda8e86999db.chunk.cached.js"></script><script charset="utf-8" src="./22.da508e33fda8e86999db.chunk.cached.js"></script><meta name="description" content="Example usage" data-rh="true"><meta property="og:url" content="https://snack.expo.dev" data-rh="true"><meta property="og:title" content="Flex Dimensions - Snack" data-rh="true"><meta property="og:description" content="Example usage" data-rh="true"><meta property="og:type" content="website" data-rh="true"><meta property="og:image" content="https://s3.amazonaws.com/exp-brand-assets/SnackIcon_200.png" data-rh="true"><meta property="og:image:width" content="200" data-rh="true"><meta property="og:image:height" content="200" data-rh="true"><meta name="twitter:card" content="summary" data-rh="true"><meta name="twitter:site" content="@expo" data-rh="true"><meta name="twitter:title" content="Flex Dimensions - Snack" data-rh="true"><meta name="twitter:description" content="Example usage" data-rh="true"><meta name="twitter:image" content="https://s3.amazonaws.com/exp-brand-assets/SnackIcon_200.png" data-rh="true"><meta name="robots" content="all" data-rh="true"></head><body><div id="root"><div class="_5qz8rht"><main class="_u0zi0h"><div class="_1ni954r"><div class="_486qrv"><h1 class="_xbazx0">Flex Dimensions</h1><div class="_14qlmkj"><div class="_1p7kgfo"><button class="_1fvowjuu"></button><div class="_1rmebf4n"><span class="_1q1e53j"></span><p class="_1l06a80">Example usage</p></div></div><button class="_qdkk7ju"></button></div></div><a href="https://expo.dev/" target="_blank" rel="noopener noreferrer" class="_1nxz9oj"><img class="_dp38z" src="./e55497eefbab3e0f30f38e569972c7ef.png"></a></div><div class="_1vjpwpl"><div class="_szqwpm"><div class="_1r4fbvz prism-code" style="position: relative; text-align: left; box-sizing: border-box; padding: 0px; overflow: hidden;"><textarea class="npm__react-simple-code-editor__textarea" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" data-gramm="false" style="margin: 0px; border: 0px; background: none; box-sizing: inherit; display: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-ligatures: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; tab-size: inherit; text-indent: inherit; text-rendering: inherit; text-transform: inherit; white-space: pre-wrap; word-break: keep-all; overflow-wrap: break-word; position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; resize: none; color: inherit; overflow: hidden; -webkit-font-smoothing: antialiased; -webkit-text-fill-color: transparent; padding: 8px;">import React from 'react';
+import {View} from 'react-native';
+
+const FlexDimensionsBasics = () =&gt; {
+  return (
+    // Try removing the `flex: 1` on the parent View.
+    // The parent will not have dimensions, so the children can't expand.
+    // What if you add `height: 300` instead of `flex: 1`?
+    &lt;View style={{flex: 1}}&gt;
+      &lt;View style={{flex: 1, backgroundColor: 'powderblue'}} /&gt;
+      &lt;View style={{flex: 2, backgroundColor: 'skyblue'}} /&gt;
+      &lt;View style={{flex: 3, backgroundColor: 'steelblue'}} /&gt;
+    &lt;/View&gt;
+  );
+};
+
+export default FlexDimensionsBasics;</textarea><pre aria-hidden="true" style="margin: 0px; border: 0px; background: none; box-sizing: inherit; display: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-ligatures: inherit; font-weight: inherit; letter-spacing: inherit; line-height: inherit; tab-size: inherit; text-indent: inherit; text-rendering: inherit; text-transform: inherit; white-space: pre-wrap; word-break: keep-all; overflow-wrap: break-word; position: relative; pointer-events: none; padding: 8px;"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>View<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react-native'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">FlexDimensionsBasics</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token comment">// Try removing the `flex: 1` on the parent View.</span>
+    <span class="token comment">// The parent will not have dimensions, so the children can't expand.</span>
+    <span class="token comment">// What if you add `height: 300` instead of `flex: 1`?</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">View</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>flex<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">View</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>flex<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> backgroundColor<span class="token operator">:</span> <span class="token string">'powderblue'</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">View</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>flex<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> backgroundColor<span class="token operator">:</span> <span class="token string">'skyblue'</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">View</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>flex<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span> backgroundColor<span class="token operator">:</span> <span class="token string">'steelblue'</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">View</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> FlexDimensionsBasics<span class="token punctuation">;</span><br></pre><style type="text/css">
+/**
+ * Reset the text fill color so that placeholder is visible
+ */
+.npm__react-simple-code-editor__textarea:empty {
+  -webkit-text-fill-color: inherit !important;
+}
+
+/**
+ * Hack to apply on some CSS on IE10 and IE11
+ */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /**
+    * IE doesn't support '-webkit-text-fill-color'
+    * So we use 'color: transparent' to make the text transparent on IE
+    * Unlike other browsers, it doesn't affect caret color in IE
+    */
+  .npm__react-simple-code-editor__textarea {
+    color: transparent !important;
+  }
+
+  .npm__react-simple-code-editor__textarea::selection {
+    background-color: #accef7 !important;
+    color: transparent !important;
+  }
+}
+</style></div><style type="text/css">
+  .prism-code {
+    background-color: #fbfcfd;
+    color: #5c6773;
+  }
+
+  .prism-code ::selection {
+    background: #cccccc;
+  }
+
+  .prism-code ::-moz-selection {
+    background: #cccccc;
+  }
+
+  .prism-code textarea {
+    outline: 0;
+  }
+
+  .prism-code .token.tag,
+  .prism-code .token.property {
+    color: #41a6d9;
+  }
+
+  .prism-code .token.function {
+    color: #f08c36;
+  }
+
+  .prism-code .token.entity {
+    color: #41a6d9;
+  }
+
+  .prism-code .token.string,
+  .prism-code .token.selector,
+  .prism-code .token.char,
+  .prism-code .token.builtin,
+  .prism-code .token.inserted {
+    color: #86b300;
+  }
+
+  .prism-code .token.regexp,
+  .prism-code .token.variable {
+    color: #4dbf99;
+  }
+
+  .prism-code .token.keyword,
+  .prism-code .token.atrule,
+  .prism-code .token.tag > .token.punctuation,
+  .prism-code .token.important {
+    color: #f2590c;
+  }
+
+  .prism-code .token.attr-name {
+    color: #f08c36;
+  }
+
+  .prism-code .token.attr-value {
+    color: #86b300;
+  }
+
+  .prism-code .token.markup,
+  .prism-code .token.special {
+    color: #FF00FF;
+  }
+
+  .prism-code .token.comment,
+  .prism-code .token.prolog,
+  .prism-code .token.doctype,
+  .prism-code .token.cdata {
+    color: #abb0b6;
+  }
+
+  .prism-code .token.number {
+    color: #f08c36;
+  }
+
+  .prism-code .token.constant,
+  .prism-code .token.boolean,
+  .prism-code .token.constant,
+  .prism-code .token.symbol,
+  .prism-code .token.deleted {
+    color: #f08c36;
+  }
+
+  .prism-code .token.operator,
+  .prism-code .token.entity,
+  .prism-code .token.url,
+  .prism-code .language-css .token.string,
+  .prism-code .style .token.string {
+    color: #778899;
+  }
+
+  .prism-code .token.punctuation {
+    color: #abb0b6;
+  }
+</style></div><div class="_10c8z0n _gytpg0" style="width: 285px;"><div class="_164s6o6"><iframe src="./index(1).html" allow="accelerometer; ambient-light-sensor; autoplay; battery; camera; fullscreen; gamepad; geolocation; gyroscope; idle-detection; magnetometer; microphone; midi; payment; picture-in-picture; screen-wake-lock; usb" class="_1ln5482"></iframe></div></div></div><div class="_1uxvl"><div class="_sasvqr"><div></div><div class="_1ik16kg"><label class="_1jlqsc5 _1rhvzb"><span class="_12lll1p">Preview</span><span class="_9xhcnvc"></span><input type="checkbox" class="_1u9fru1" checked=""></label><span class="_154j88y"><button class="_o6pkgg">My Device</button><button class="_o6pkgg">Android</button><button class="_o6pkgg">iOS</button><button class="_1ghq36w7">Web</button></span></div></div></div></main><div></div></div></div><script>(function(e,t){var n=e.amplitude||{_q:[],_iq:{}};var r=t.createElement("script")
+    ;r.type="text/javascript"
+    ;r.integrity="sha384-girahbTbYZ9tT03PWWj0mEVgyxtZoyDF9KVZdL+R53PP5wCY0PiVUKq0jeRlMx9M"
+    ;r.crossOrigin="anonymous";r.async=true
+    ;r.src="https://cdn.amplitude.com/libs/amplitude-7.2.1-min.gz.js"
+    ;r.onload=function(){if(!e.amplitude.runQueuedFunctions){
+    console.log("[Amplitude] Error: could not load SDK")}}
+    ;var i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)
+    ;function s(e,t){e.prototype[t]=function(){
+    this._q.push([t].concat(Array.prototype.slice.call(arguments,0)));return this}}
+    var o=function(){this._q=[];return this}
+    ;var a=["add","append","clearAll","prepend","set","setOnce","unset"]
+    ;for(var c=0;c<a.length;c++){s(o,a[c])}n.Identify=o;var u=function(){this._q=[]
+    ;return this}
+    ;var l=["setProductId","setQuantity","setPrice","setRevenueType","setEventProperties"]
+    ;for(var p=0;p<l.length;p++){s(u,l[p])}n.Revenue=u
+    ;var d=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","enableTracking","setGlobalUserProperties","identify","clearUserProperties","setGroup","logRevenueV2","regenerateDeviceId","groupIdentify","onInit","logEventWithTimestamp","logEventWithGroups","setSessionId","resetSessionId"]
+    ;function v(e){function t(t){e[t]=function(){
+    e._q.push([t].concat(Array.prototype.slice.call(arguments,0)))}}
+    for(var n=0;n<d.length;n++){t(d[n])}}v(n);n.getInstance=function(e){
+    e=(!e||e.length===0?"$default_instance":e).toLowerCase()
+    ;if(!n._iq.hasOwnProperty(e)){n._iq[e]={_q:[]};v(n._iq[e])}return n._iq[e]}
+    ;e.amplitude=n})(window,document);
+
+    amplitude.getInstance().init("e91121c19a5bdcccd852cd032dc911fe", null, { includeReferrer: true });</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-53647600-5', {cookieDomain: 'auto', siteSpeedSampleRate: 100});ga('send', 'pageview');</script><script src="./polyfill.min.js"></script><script src="./app.bundle.js"></script><div><div class="_1wt0jcd5"><div class="_1ba9hs1"></div></div></div></body></html>
