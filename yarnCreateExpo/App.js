@@ -1,8 +1,85 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer'; // Import createDrawerNavigator
 import ProductBubble from './Components.js';
+import './firebaseConfig.js';
+import { app, auth } from './firebaseConfig.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+
+let isSignedIn = false;
+
+console.log(auth);
+
+function SignIn() {
+  const [email, setEmail] = useState('Dmsacco0807@gmail.com');
+  const [password, setPassword] = useState('password');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+
+  const login = async () => {
+    // empty for now
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user);
+      console.log('Signed in');
+      isSignedIn = true;
+    })
+    .catch((error) => {
+      const { code, message } = error;
+      let formattedCode = code !== null ? code.replace('auth/', '').replace(/-/g, ' ').toUpperCase() : '';
+      setEmailError(formattedCode);
+    });
+    
+  }
+  const signup = async () => {
+    // empty for now
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        // console.log(user);
+        console.log('Signed up');
+      })
+      .catch((error) => {
+        const { code, message } = error;
+        let formattedCode = code !== null ? code.replace('auth/', '').replace(/-/g, ' ').toUpperCase() : '';
+        setEmailError(formattedCode);
+      });
+      
+  }
+
+  return (
+    <View style={{padding:20}}>
+      <Text>Sign In</Text>
+      <Text>Email</Text>
+      
+      <TextInput
+        autoComplete='email'
+        placeholder="Email"
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+        onChangeText={text => setEmail(text)}
+        value={email}
+      />
+      <Text>Password</Text>
+      <TextInput
+        placeholder="Password"
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+        secureTextEntry={true}
+        onChangeText={text => setPassword(text)}
+        value={password}
+      />
+      {(emailError) ? <Text style={{color: 'red'}}>{emailError}</Text> : null}
+      <Button title="Log In" onPress={login} />
+      <Button title="Sign Up" onPress={signup} />
+    </View>
+  );
+}
 
 function HomeScreen({ navigation }) {
   return (
@@ -60,7 +137,6 @@ function HomeScreen({ navigation }) {
   );
 }
 
-
 function ProductScreen({ route, navigation }) {
   const { productId, url, price, productName} = route.params;
   console.log(route.params);
@@ -91,17 +167,28 @@ function ProductScreen({ route, navigation }) {
   );
 }
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Products" component={ProductScreen} initialParams={{productId:'ca724'}} />
-      </Stack.Navigator>
+      <Drawer.Navigator>
+        {isSignedIn ? (
+          //START FRAGMENT
+          <>
+          <Drawer.Screen name="Home" component={HomeScreen} />
+          
+          <Drawer.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
+          
+          
+          </>
+          //END FRAGMENT
+        ) : (
+          <Drawer.Screen name="SignIn" component={SignIn} />
+        )}
+        
+      </Drawer.Navigator>
     </NavigationContainer>
-    
   );
 }
 
