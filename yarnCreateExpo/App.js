@@ -40,6 +40,7 @@ import {
   createCustomToken,
 } from "firebase/auth";
 
+
 function SignIn({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -256,8 +257,8 @@ function ProductScreen({ route, navigation }) {
   );
 }
 
-const Drawer = createDrawerNavigator();
-// const Stack = createNativeStackNavigator();
+//const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
 const AuthContext = React.createContext();
 
@@ -328,22 +329,22 @@ export default function App() {
   return (
     <AuthContext.Provider value={authContext}>
     <NavigationContainer>
-      <Drawer.Navigator>
-        {isSignedIn ? (
+      <Stack.Navigator>
+        {state.userToken != null ? (
           //START FRAGMENT
           <>
-          <Drawer.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
           
-          <Drawer.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
+          <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
           
           
           </>
           //END FRAGMENT
         ) : (
-          <Drawer.Screen name="SignIn" component={SignIn} />
+          <Stack.Screen name="SignIn" component={SignIn} />
         )}
         
-      </Drawer.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
     </AuthContext.Provider>
   );
