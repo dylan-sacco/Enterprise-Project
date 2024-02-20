@@ -1,0 +1,1 @@
+window.SM_COOKIE='%3B';

@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "yarnCreateExpo",
-    "slug": "yarnCreateExpo",
+    "name": "Fellas Clothing Co.",
+    "slug": "fellas-clothing-co",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "fellas",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
