@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import  {  StyleSheet, Text, View, Image, Platform, 
-        ScrollView, Button, TouchableOpacity, TextInput
-} from 'react-native';
+import { StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity, TextInput } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer'; // Import createDrawerNavigator
 import ProductBubble from './Components.js';
-
 import './firebaseConfig.js';
-import {app, auth} from './firebaseConfig.js';
+import { app, auth } from './firebaseConfig.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 
@@ -170,22 +167,27 @@ function ProductScreen({ route, navigation }) {
   );
 }
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Drawer.Navigator>
         {isSignedIn ? (
-          <Stack.Screen name="Home" component={HomeScreen} />
+          //START FRAGMENT
+          <>
+          <Drawer.Screen name="Home" component={HomeScreen} />
+          
+          <Drawer.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
+          
+          
+          </>
+          //END FRAGMENT
         ) : (
-          <Stack.Screen name="SignIn" component={SignIn} />
+          <Drawer.Screen name="SignIn" component={SignIn} />
         )}
-        {/* <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="Home" component={HomeScreen} /> 
-         */}
-        <Stack.Screen name="Products" component={ProductScreen} initialParams={{productId:'ca724'}} />
-      </Stack.Navigator>
+        
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
