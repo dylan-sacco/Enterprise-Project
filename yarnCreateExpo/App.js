@@ -1,4 +1,7 @@
-// system imports hi dylan :3
+
+
+
+//--------------------SYSTEM IMPORTS--------------------
 import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import * as Linking from "expo-linking";
@@ -15,7 +18,7 @@ import {
   TextInput,
 } from "react-native";
 
-// navigation imports
+//--------------------NAVIGATION IMPORTS--------------------
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -26,10 +29,10 @@ import {
   DarkTheme,
 } from "@react-navigation/native";
 
-// custom components imports
+//--------------------CUSTOM IMPORTS--------------------
 import { ProductBubble, CheckBox } from "./Components.js";
 
-// firebase imports
+//--------------------FIREBASE IMPORTS--------------------
 import "./firebaseConfig.js";
 import { app, auth } from "./firebaseConfig.js";
 import {
@@ -40,7 +43,50 @@ import {
   createCustomToken,
 } from "firebase/auth";
 
+//--------------------NAV DECLARATIONS--------------------
+const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const AuthContext = React.createContext();
 
+//--------------------Stack Methods--------------------
+function CheckoutNavigator(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Cart" component={Cart}/>
+      <Stack.Screen name="Checkout" component={Checkout}/>
+      <Stack.Screen name="Thanks" component={Thanks}/>
+    </Stack.Navigator>
+  );
+}
+function SettingsNavigator(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Settings" component={settings} />
+      <Stack.Screen name="Account" component={account} />
+    </Stack.Navigator>
+  );
+}
+function WelcomeNavigator(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={welcome} />
+    </Stack.Navigator>
+  );
+}
+function ShoppingNavigator(){
+  return(
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+          
+      <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
+
+      
+      
+    </Stack.Navigator>
+  );
+}
+//--------------------START OF SIGNIN FUNCTION--------------------
 function SignIn({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -105,21 +151,22 @@ function SignIn({ navigation }) {
     </View>
   );
 }
-
+//--------------------START OF HOMESCREEN FUNCTION--------------------
 function HomeScreen({ navigation }) {
   return (
     <ScrollView>
       <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
         Welcome to{"\n"}Fellas Clothing CO
       </Text>
-      <Text>Home Screen</Text>
-      <Button
+      
+      {/*<Button
         title="Go to Products"
         onPress={() => {
           // navigation.navigate('Products', {productId: 'ca724'}); // use navigate to go to an existing screen
           navigation.push("Products", { productId: "ca724" }); // use push to create a new screen
         }}
-      ></Button>
+      ></Button>*/}
+
       <Button
         title="Print user to Logs"
         onPress={() => {
@@ -149,7 +196,7 @@ function HomeScreen({ navigation }) {
 
             ...Platform.select({
               web: {
-                maxWidth: 1000,
+                maxWidth: 1200,
               },
             }),
           }}
@@ -219,6 +266,8 @@ function HomeScreen({ navigation }) {
   );
 }
 
+
+//--------------------START OF PRODUCT SCREEN FUNCTION--------------------
 function ProductScreen({ route, navigation }) {
   const { productId, url, price, productName } = route.params;
   console.log(route.params);
@@ -256,12 +305,69 @@ function ProductScreen({ route, navigation }) {
     </View>
   );
 }
+//--------------------START OF ACCOUNT SETTINGS FUNCTION--------------------
+function account({ navigation }){
+  return(
+    <ScrollView>
+      <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
+        Account
+      </Text>
+    </ScrollView>
+  );
+}
+//--------------------START OF SETTINGS FUNCTION--------------------
+function settings({ navigation }){
+  return(
+    <ScrollView>
+      <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
+        Settings
+      </Text>
+    </ScrollView>
+  );
+}
+//--------------------START OF WELCOME FUNCTION--------------------
+function welcome({ navigation }){
+  return(
+  <ScrollView>
+    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
+      Welcome!
+    </Text>
+  </ScrollView>
+  );
+}
+//--------------------START OF CHECKOUT FUNCTION--------------------
+function Checkout({ navigation }){
+  return(
+  <ScrollView>
+    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
+      Checkout
+    </Text>
+  </ScrollView>
+  );
+}
+//--------------------START OF THANKS FUNCTION--------------------
+function Thanks({ navigation }){
+  return(
+  <ScrollView>
+    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
+      Thank You!
+    </Text>
+  </ScrollView>
+  );
+}
+//--------------------START OF CART FUNCTION--------------------
+function Cart({ navigation }){
+  return(
+  <ScrollView>
+    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
+      Cart
+    </Text>
+  </ScrollView>
+  );
+}
 
-//const Drawer = createDrawerNavigator();
-const Stack = createNativeStackNavigator();
-// const Tab = createBottomTabNavigator();
-const AuthContext = React.createContext();
 
+//--------------------START OF APP FUNCTION--------------------
 export default function App() {
   // const navigation = useNavigation();
   const [state, dispatch] = React.useReducer(
@@ -329,22 +435,20 @@ export default function App() {
   return (
     <AuthContext.Provider value={authContext}>
     <NavigationContainer>
-      <Stack.Navigator>
+      <Drawer.Navigator>
         {state.userToken != null ? (
           //START FRAGMENT
           <>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          
-          <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
-          
-          
+          <Drawer.Screen name="Home" component={WelcomeNavigator} />
+          <Drawer.Screen name="Shopping" component={ShoppingNavigator} />
+          <Drawer.Screen name="Settings" component={SettingsNavigator} />
           </>
           //END FRAGMENT
         ) : (
-          <Stack.Screen name="SignIn" component={SignIn} />
+          <Drawer.Screen name="SignIn" component={SignIn} />
         )}
         
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
     </AuthContext.Provider>
   );
