@@ -33,7 +33,7 @@ public class FellasWebServiceApplication {
 
 	static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-	private final String valid_authorization = "Amdin:Password";
+	private final String valid_authorization = "Admin:Password";
 
 
 
@@ -195,7 +195,6 @@ public class FellasWebServiceApplication {
 		
 	}
 	
-
 	@PostMapping("/product")
 	public ResponseEntity<Product> postProduct(@RequestHeader("Authorization") String authorization_header, @RequestBody String product) {
 		if(!user_authenticated(authorization_header)){
