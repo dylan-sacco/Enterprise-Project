@@ -49,7 +49,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const AuthContext = React.createContext();
 
-//--------------------Stack Methods--------------------
+//--------------------STACK METHODS--------------------
 function CheckoutNavigator(){
   return(
     <Stack.Navigator>
