@@ -76,6 +76,7 @@ package-lock.json
 
 # OS X
 .DS_Store
+**/.DS_Store
 
 # Test generated files
 *.js.meta
