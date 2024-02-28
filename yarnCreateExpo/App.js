@@ -341,17 +341,14 @@ function welcome({ navigation }){
       </View>
       <View style={styles.navigationContainer}>
       <Button
-        title="Shop Now"
-        onPress={() => ShoppingNavigator.navigate('Home')}
-      />
-       <Button
-        title="Settings"
-        onPress={() => navigation.navigate(SettingsNavigator)}
-      />
-       <Button
-        title="Account"
-        onPress={() => navigation.navigate(SettingsNavigator)}
-      />
+          title="Shop Now"
+          onPress={() => navigation.navigate('Shopping', { screen: 'Home' })}
+        />
+        <Button
+          title="Settings"
+          onPress={() => navigation.navigate('Settings')}
+        />
+       
         {/* Add more buttons as needed. i was going to have a link to the products stack and maybe one or two other places. ik we wanted a favorites page but idk if thats feasible */}
       </View>
       <View style={styles.aboutContainer}>
