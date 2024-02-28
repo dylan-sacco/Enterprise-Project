@@ -327,12 +327,38 @@ function settings({ navigation }){
 }
 //--------------------START OF WELCOME FUNCTION--------------------
 function welcome({ navigation }){
-  return(
-  <ScrollView>
-    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-      Welcome!
-    </Text>
-  </ScrollView>
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.heading}>Welcome to The Fellas</Text>
+      <View style={styles.bannerContainer}>
+        {
+          //i want a banner image here but i didnt want to find one so thats a problem for another time
+          /*<Image
+          source={require('./placeholder_banner.jpg')} // Placeholder image
+          style={styles.bannerImage}
+          resizeMode="cover"
+        />*/}
+      </View>
+      <View style={styles.navigationContainer}>
+      <Button
+        title="Shop Now"
+        onPress={() => ShoppingNavigator.navigate('Home')}
+      />
+       <Button
+        title="Settings"
+        onPress={() => navigation.navigate(SettingsNavigator)}
+      />
+       <Button
+        title="Account"
+        onPress={() => navigation.navigate(SettingsNavigator)}
+      />
+        {/* Add more buttons as needed. i was going to have a link to the products stack and maybe one or two other places. ik we wanted a favorites page but idk if thats feasible */}
+      </View>
+      <View style={styles.aboutContainer}>
+        <Text style={styles.aboutText}>At Fellas Co., our mission is simple: to provide an unparalleled shopping experience centered around you. We're more than just a store; we're a community dedicated to delivering exceptional service and satisfaction to every customer. Whether you're seeking timeless fashion pieces or curated lifestyle products, we're here to inspire and support you on your journey. Welcome to Fellas Co., where your satisfaction is our top priority."</Text>
+        
+      </View>
+    </ScrollView>
   );
 }
 //--------------------START OF CHECKOUT FUNCTION--------------------
@@ -456,10 +482,53 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    // justifyContent: 'center',
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  bannerContainer: {
+    width: '100%',
+    height: 200, // Adjust height as needed
+    marginBottom: 20,
+  },
+  bannerImage: {
+    width: '100%',
+    height: '100%',
+  },
+  navigationContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#007bff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    marginHorizontal: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  aboutContainer: {
+    width: '80%',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    padding: 10,
+  },
+  aboutText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
 });
+
 //hi
