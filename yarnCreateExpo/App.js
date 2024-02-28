@@ -331,22 +331,19 @@ function welcome({ navigation }){
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.heading}>Welcome to The Fellas</Text>
       <View style={styles.bannerContainer}>
-        {
-          //i want a banner image here but i didnt want to find one so thats a problem for another time
-          /*<Image
-          source={require('./placeholder_banner.jpg')} // Placeholder image
-          style={styles.bannerImage}
-          resizeMode="cover"
-        />*/}
+       <Image url="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Ffree-web-banner&psig=AOvVaw2rONN91M651mSPBlLUaKzM&ust=1709237179296000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJCn1enqzoQDFQAAAAAdAAAAABAJ"></Image>
       </View>
       <View style={styles.navigationContainer}>
       <Button
+          
           title="Shop Now"
           onPress={() => navigation.navigate('Shopping', { screen: 'Home' })}
+          
         />
         <Button
           title="Settings"
           onPress={() => navigation.navigate('Settings')}
+          
         />
        
         {/* Add more buttons as needed. i was going to have a link to the products stack and maybe one or two other places. ik we wanted a favorites page but idk if thats feasible */}
