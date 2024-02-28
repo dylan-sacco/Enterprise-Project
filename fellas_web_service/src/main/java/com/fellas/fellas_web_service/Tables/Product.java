@@ -14,6 +14,12 @@ public class Product {
         this.Price = Price;
         this.Image = Image;
     }
+    public Product(String Name, String Description, double Price, byte[] Image){
+        this.Name = Name;
+        this.Description = Description;
+        this.Price = Price;
+        this.Image = Image;
+    }
     public Product(){
         this.Product_ID = "";
         this.Name = "";
