@@ -352,7 +352,7 @@ function welcome({ navigation }){
         
       </View>
       <View>
-        
+
       </View>
     </ScrollView>
   );
@@ -457,20 +457,20 @@ export default function App() {
   return (
     <AuthContext.Provider value={authContext}>
     <NavigationContainer>
-      <Drawer.Navigator>
+      <Tab.Navigator>
         {state.userToken != null ? (
           //START FRAGMENT
           <>
-          <Drawer.Screen name="Home" component={WelcomeNavigator} />
-          <Drawer.Screen name="Shopping" component={ShoppingNavigator} />
-          <Drawer.Screen name="Settings" component={SettingsNavigator} />
+          <Tab.Screen name="Home" component={WelcomeNavigator} />
+          <Tab.Screen name="Shopping" component={ShoppingNavigator} />
+          <Tab.Screen name="Settings" component={SettingsNavigator} />
           </>
           //END FRAGMENT
         ) : (
-          <Drawer.Screen name="SignIn" component={SignIn} />
+          <Tab.Screen name="SignIn" component={SignIn} />
         )}
         
-      </Drawer.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
     </AuthContext.Provider>
   );
