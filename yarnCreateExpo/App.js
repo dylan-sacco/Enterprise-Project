@@ -220,40 +220,57 @@ function HomeScreen({ navigation }) {
 }
 
 function ProductScreen({ route, navigation }) {
-  const { productId, url, price, productName } = route.params;
-  console.log(route.params);
+  const [search, setSearch] = useState('');
+  
   const onPress = () => {
     console.log("Add to cart");
   };
+
+  //placeholders :3
+  const products = [
+    { name: 'Product', price: '10.00' },
+    { name: 'different product', price: '20.00' },
+    { name: 'title', price: '30.00' },
+    { name: 'joe ball', price: '40.00' },
+    { name: 'product 5', price: '50.00' },
+
+  ];
+
+  const filteredProducts = products.filter(product => 
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        // justifyContent: 'center'
-        paddingTop: 50,
-      }}
-    >
-      {url ? (
-        <Image source={{ uri: url }} style={{ height: 200, width: 200 }} />
-      ) : (
-        <Image source={require("./assets/Square_200x200.png")} />
-      )}
-      <Text style={{ fontSize: 30, textAlign: "center" }}>
-        {productName || "none"}
-      </Text>
-      <Text>${price || "0.00"}</Text>
-      <TouchableOpacity
-        onPress={onPress}
-        style={{
-          backgroundColor: "rgba(173, 216, 230, 0.8)",
-          padding: 10,
-          borderRadius: 9,
-        }}
-      >
-        <Text style={{ fontSize: 20 }}>Add To Cart</Text>
-      </TouchableOpacity>
-    </View>
+    <ScrollView style={{ backgroundColor: "#f5f5f5" }}>
+      <TextInput
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1, margin: 15, width: 400}}
+        onChangeText={text => setSearch(text)}
+        value={search}
+        placeholder="Search products"
+      />
+      <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', padding: 10 }}>
+        {filteredProducts.map((product, i) => (
+          <View key={i} style={{ width: '45%', margin: 10, backgroundColor: '#fff', borderRadius: 10, overflow: 'hidden' }}>
+            <Image source={require("./assets/Square_200x200.png")} style={{ height: 200, width: '100%' }} />
+            <View style={{ padding: 10 }}>
+              <Text style={{ fontSize: 20, textAlign: "center" }}>{product.name}</Text>
+              <Text style={{ fontSize: 15, textAlign: "center" }}>${product.price}</Text>
+              <TouchableOpacity
+                onPress={onPress}
+                style={{
+                  backgroundColor: "rgba(173, 216, 230, 0.8)",
+                  padding: 10,
+                  borderRadius: 9,
+                  marginTop: 10,
+                }}
+              >
+                <Text style={{ fontSize: 20, textAlign: "center" }}>Add To Cart</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -328,24 +345,24 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={authContext}>
-    <NavigationContainer>
-      <Stack.Navigator>
-        {state.userToken != null ? (
-          //START FRAGMENT
-          <>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          
-          <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
-          
-          
-          </>
-          //END FRAGMENT
-        ) : (
-          <Stack.Screen name="SignIn" component={SignIn} />
-        )}
-        
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {state.userToken != null ? (
+            //START FRAGMENT
+            <>
+              <Stack.Screen name="Home" component={HomeScreen} />
+
+              <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
+
+
+            </>
+            //END FRAGMENT
+          ) : (
+            <Stack.Screen name="SignIn" component={SignIn} />
+          )}
+
+        </Stack.Navigator>
+      </NavigationContainer>
     </AuthContext.Provider>
   );
 }
