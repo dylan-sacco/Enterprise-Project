@@ -255,11 +255,7 @@ function HomeScreen({ navigation }) {
             name="Corn Dog"
           />
 
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
+         
         </View>
       </View>
     </ScrollView>
@@ -331,25 +327,31 @@ function welcome({ navigation }){
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.heading}>Welcome to The Fellas</Text>
       <View style={styles.bannerContainer}>
-       <Image url="https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngtree.com%2Ffree-web-banner&psig=AOvVaw2rONN91M651mSPBlLUaKzM&ust=1709237179296000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJCn1enqzoQDFQAAAAAdAAAAABAJ"></Image>
+        <Image source={require('./assets/WelcomeBanner2.png')}
+        resizeMode="cover"
+        style={styles.bannerImage}></Image>
       </View>
       <View style={styles.navigationContainer}>
       <Button
           
           title="Shop Now"
           onPress={() => navigation.navigate('Shopping', { screen: 'Home' })}
+          style={{ padding: 20, marginHorizontal: 20 }}
           
         />
         <Button
-          title="Settings"
-          onPress={() => navigation.navigate('Settings')}
-          
+            title="Settings"
+            onPress={() => navigation.navigate('Settings')}
+            style={{ padding: 20, marginHorizontal: 20 }}
         />
        
         {/* Add more buttons as needed. i was going to have a link to the products stack and maybe one or two other places. ik we wanted a favorites page but idk if thats feasible */}
       </View>
       <View style={styles.aboutContainer}>
         <Text style={styles.aboutText}>At Fellas Co., our mission is simple: to provide an unparalleled shopping experience centered around you. We're more than just a store; we're a community dedicated to delivering exceptional service and satisfaction to every customer. Whether you're seeking timeless fashion pieces or curated lifestyle products, we're here to inspire and support you on your journey. Welcome to Fellas Co., where your satisfaction is our top priority."</Text>
+        
+      </View>
+      <View>
         
       </View>
     </ScrollView>
@@ -500,11 +502,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 20,
   },
+  
+  
   button: {
     backgroundColor: '#007bff',
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginHorizontal: 10,
+    marginHorizontal: 10, // Adjust horizontal margin
     borderRadius: 5,
   },
   buttonText: {
