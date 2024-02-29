@@ -22,7 +22,7 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from '@react-navigation/drawer'; // Import createDrawerNavigator
+
 import {
   useNavigation,
   DefaultTheme,
@@ -44,7 +44,7 @@ import {
 } from "firebase/auth";
 
 //--------------------NAV DECLARATIONS--------------------
-const Drawer = createDrawerNavigator();
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const AuthContext = React.createContext();
@@ -330,7 +330,8 @@ function welcome({ navigation }){
         <Image source={require('./assets/WelcomeBanner2.png')}
         resizeMode="cover"
         style={styles.bannerImage}></Image>
-      </View>
+      
+      {/*
       <View style={styles.navigationContainer}>
       <Button
           
@@ -344,6 +345,8 @@ function welcome({ navigation }){
             onPress={() => navigation.navigate('Settings')}
             style={{ padding: 20, marginHorizontal: 20 }}
         />
+        </View>
+        */}
        
         {/* Add more buttons as needed. i was going to have a link to the products stack and maybe one or two other places. ik we wanted a favorites page but idk if thats feasible */}
       </View>
@@ -456,8 +459,8 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={authContext}>
-    <NavigationContainer>
-      <Tab.Navigator>
+    <NavigationContainer >
+      <Tab.Navigator  screenOptions={{headerShown: false}}>
         {state.userToken != null ? (
           //START FRAGMENT
           <>
