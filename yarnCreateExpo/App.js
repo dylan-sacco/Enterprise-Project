@@ -53,7 +53,7 @@ const AuthContext = React.createContext();
 //--------------------STACK METHODS--------------------
 function CheckoutNavigator(){
   return(
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}} >
       <Stack.Screen name="Cart" component={Cart}/>
       <Stack.Screen name="Checkout" component={Checkout}/>
       <Stack.Screen name="Thanks" component={Thanks}/>
@@ -62,7 +62,7 @@ function CheckoutNavigator(){
 }
 function SettingsNavigator(){
   return(
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Settings" component={settings} />
       <Stack.Screen name="Account" component={account} />
     </Stack.Navigator>
@@ -70,14 +70,14 @@ function SettingsNavigator(){
 }
 function WelcomeNavigator(){
   return(
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={welcome} />
     </Stack.Navigator>
   );
 }
 function ShoppingNavigator(){
   return(
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={HomeScreen} />
           
       <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
