@@ -7,6 +7,7 @@ import { StatusBar } from "expo-status-bar";
 import * as Linking from "expo-linking";
 import * as SecureStore from "expo-secure-store";
 import {
+  SafeAreaView,
   StyleSheet,
   Text,
   View,
@@ -126,7 +127,8 @@ function SignIn({ navigation }) {
   };
 
   return (
-    <View style={{ padding: 20, maxWidth: 800 }}>
+
+    <SafeAreaView style={{ padding: 20, maxWidth: 800, margin: 20 }}>
       <Text>Sign In</Text>
       <Text>Email</Text>
 
@@ -148,7 +150,7 @@ function SignIn({ navigation }) {
       {emailError ? <Text style={{ color: "red" }}>{emailError}</Text> : null}
       <Button title="Log In" onPress={signin} />
       <Button title="Sign Up" onPress={signup} />
-    </View>
+    </SafeAreaView>
   );
 }
 //--------------------START OF HOMESCREEN FUNCTION--------------------
