@@ -1,6 +1,3 @@
-
-
-
 //--------------------SYSTEM IMPORTS--------------------
 import React, { useState, useContext } from "react";
 import { StatusBar, setStatusBarStyle } from "expo-status-bar";
@@ -44,7 +41,7 @@ const Tab = createBottomTabNavigator();
 //--------------------STACK METHODS--------------------
 function CheckoutNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }} >
+    <Stack.Navigator screenOptions={{ headerShown: true }} >
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Checkout" component={Checkout} />
       <Stack.Screen name="Thanks" component={Thanks} />
@@ -53,7 +50,7 @@ function CheckoutNavigator() {
 }
 function SettingsNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator screenOptions={{ headerShown: true }}>
       <Stack.Screen name="Account" component={Account} />
       <Stack.Screen name="Settings" component={SettingsPage} />
     </Stack.Navigator>
