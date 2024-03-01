@@ -2,413 +2,115 @@
 
 
 //--------------------SYSTEM IMPORTS--------------------
-import React, { useState } from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { useState, useContext } from "react";
+import { StatusBar, setStatusBarStyle } from "expo-status-bar";
 import * as Linking from "expo-linking";
 import * as SecureStore from "expo-secure-store";
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  Platform,
-  ScrollView,
-  Button,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity, TextInput, Settings, } from "react-native";
 
 //--------------------NAVIGATION IMPORTS--------------------
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import {
-  useNavigation,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
-
-//--------------------CUSTOM IMPORTS--------------------
-import { ProductBubble, CheckBox } from "./Components.js";
+import { useNavigation, DefaultTheme, DarkTheme, } from "@react-navigation/native";
 
 //--------------------FIREBASE IMPORTS--------------------
 import "./firebaseConfig.js";
-import { app, auth } from "./firebaseConfig.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithCustomToken,
-  createCustomToken,
-} from "firebase/auth";
+
+//--------------------AUTHENTICATION IMPORTS--------------------
+import { AuthContext } from "./auth/AuthContext";
+
+//--------------------PAGES IMPORTS--------------------
+import SignIn from "./pages/signinpage.js";
+import HomeScreen from "./pages/homePage.js";
+import ProductScreen from "./pages/productPage.js";
+import Cart from "./pages/cartPage.js";
+import Checkout from "./pages/checkoutPage.js";
+import Thanks from "./pages/thanksPage.js";
+import SettingsPage from "./pages/settingsPage.js";
+import Account from "./pages/accountPage.js";
+import Welcome from "./pages/welcomePage.js";
+
+//--------------------STYLES IMPORTS--------------------
+import { styles } from "./styles/styles.js";
+
 
 //--------------------NAV DECLARATIONS--------------------
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const AuthContext = React.createContext();
+
 
 //--------------------STACK METHODS--------------------
-function CheckoutNavigator(){
-  return(
-    <Stack.Navigator screenOptions={{headerShown: false}} >
-      <Stack.Screen name="Cart" component={Cart}/>
-      <Stack.Screen name="Checkout" component={Checkout}/>
-      <Stack.Screen name="Thanks" component={Thanks}/>
+function CheckoutNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }} >
+      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Checkout" component={Checkout} />
+      <Stack.Screen name="Thanks" component={Thanks} />
     </Stack.Navigator>
   );
 }
-function SettingsNavigator(){
-  return(
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Settings" component={settings} />
-      <Stack.Screen name="Account" component={account} />
+function SettingsNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Account" component={Account} />
+      <Stack.Screen name="Settings" component={SettingsPage} />
     </Stack.Navigator>
   );
 }
-function WelcomeNavigator(){
-  return(
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={welcome} />
-    </Stack.Navigator>
-  );
-}
-function ShoppingNavigator(){
-  return(
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+function ShoppingNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: true }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-          
       <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
-
-      
-      
     </Stack.Navigator>
   );
 }
-//--------------------START OF SIGNIN FUNCTION--------------------
-function SignIn({ navigation }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
-  const { signIn } = React.useContext(AuthContext);
-  function setErrorCodes(error) {
-    const { code, message } = error;
-    let formattedCode =
-      code !== null
-        ? code.replace("auth/", "").replace(/-/g, " ").toUpperCase()
-        : "";
-    setEmailError(formattedCode);
-  }
-  const signin = async () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        signIn({ token: user.stsTokenManager.accessToken });
-      })
-      .catch((error) => {
-        setErrorCodes(error);
-      });
-  };
-  const signup = async () => {
-    // empty for now
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        signIn({ token: user.stsTokenManager.accessToken });
-      })
-      .catch((error) => {
-        setErrorCodes(error);
-      });
-  };
-
+function HomeTabs() {
   return (
-
-    <SafeAreaView style={{ padding: 20, maxWidth: 800, margin: 20 }}>
-      <Text>Sign In</Text>
-      <Text>Email</Text>
-
-      <TextInput
-        autoComplete="email"
-        placeholder="Email"
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        onChangeText={(text) => setEmail(text)}
-        value={email}
-      />
-      <Text>Password</Text>
-      <TextInput
-        placeholder="Password"
-        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
-        secureTextEntry={true}
-        onChangeText={(text) => setPassword(text)}
-        value={password}
-      />
-      {emailError ? <Text style={{ color: "red" }}>{emailError}</Text> : null}
-      <Button title="Log In" onPress={signin} />
-      <Button title="Sign Up" onPress={signup} />
-    </SafeAreaView>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="Profile" component={SettingsNavigator} />
+      <Tab.Screen name="HomeStack" component={ShoppingNavigator} />
+      <Tab.Screen name="Cart" component={CheckoutNavigator} />
+    </Tab.Navigator>
   );
-}
-//--------------------START OF HOMESCREEN FUNCTION--------------------
-function HomeScreen({ navigation }) {
-  return (
-    <ScrollView>
-      <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-        Welcome to{"\n"}Fellas Clothing CO
-      </Text>
-      
-      {/*<Button
-        title="Go to Products"
-        onPress={() => {
-          // navigation.navigate('Products', {productId: 'ca724'}); // use navigate to go to an existing screen
-          navigation.push("Products", { productId: "ca724" }); // use push to create a new screen
-        }}
-      ></Button>*/}
-
-      <Button
-        title="Print user to Logs"
-        onPress={() => {
           console.log(auth.currentUser);
-          console.log("User is signed " + isSignedIn);
-        }}
-      ></Button>
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          // justifyContent: 'center'
-          paddingTop: 20,
-          alignSelf: "center",
-          // borderColor: 'black',
-          // borderWidth: 2,
-          margin: 10,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "left",
-            width: "100%",
-            alignSelf: "center",
 
-            ...Platform.select({
-              web: {
-                maxWidth: 1200,
-              },
-            }),
-          }}
-        >
-          <ProductBubble
-            image="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1584562506/628717_H9H80_1074_001_100_0000_Light-Mens-Gucci-Off-The-Grid-high-top-sneaker.jpg"
-            price="23.75"
-            name="Shoe"
-          />
-
-          <ProductBubble
-            image="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQFBGrDfewGS86JSoe8g4ywc4KtHtaomDauwj2HUTkPTZOJBj0tea2cH09Dd3hH_IMwcQSbI8Nmeh7bum0KdvfiyJki0yKWZVr5-F12CCIWWz8Z5SvsRUKh&usqp=CAc"
-            price="23.75"
-            name="Belt"
-          />
-
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
-
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
-
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
-
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
-
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
-
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
-
-          <ProductBubble
-            image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg"
-            price="23.75"
-            name="Corn Dog"
-          />
-
-         
-        </View>
-      </View>
-    </ScrollView>
-  );
-}
-
-
-//--------------------START OF PRODUCT SCREEN FUNCTION--------------------
-function ProductScreen({ route, navigation }) {
-  const { productId, url, price, productName } = route.params;
-  console.log(route.params);
-  const onPress = () => {
-    console.log("Add to cart");
-  };
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        // justifyContent: 'center'
-        paddingTop: 50,
-      }}
-    >
-      {url ? (
-        <Image source={{ uri: url }} style={{ height: 200, width: 200 }} />
-      ) : (
-        <Image source={require("./assets/Square_200x200.png")} />
-      )}
-      <Text style={{ fontSize: 30, textAlign: "center" }}>
-        {productName || "none"}
-      </Text>
-      <Text>${price || "0.00"}</Text>
-      <TouchableOpacity
-        onPress={onPress}
-        style={{
-          backgroundColor: "rgba(173, 216, 230, 0.8)",
-          padding: 10,
-          borderRadius: 9,
-        }}
-      >
-        <Text style={{ fontSize: 20 }}>Add To Cart</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-//--------------------START OF ACCOUNT SETTINGS FUNCTION--------------------
-function account({ navigation }){
-  return(
-    <ScrollView>
-      <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-        Account
-      </Text>
-    </ScrollView>
-  );
-}
-//--------------------START OF SETTINGS FUNCTION--------------------
-function settings({ navigation }){
-  return(
-    <ScrollView>
-      <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-        Settings
-      </Text>
-    </ScrollView>
-  );
-}
-//--------------------START OF WELCOME FUNCTION--------------------
-function welcome({ navigation }){
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.heading}>Welcome to The Fellas</Text>
-      <View style={styles.bannerContainer}>
-        <Image source={require('./assets/WelcomeBanner2.png')}
-        resizeMode="cover"
-        style={styles.bannerImage}></Image>
-      
-      {/*
-      <View style={styles.navigationContainer}>
-      <Button
-          
-          title="Shop Now"
-          onPress={() => navigation.navigate('Shopping', { screen: 'Home' })}
-          style={{ padding: 20, marginHorizontal: 20 }}
-          
-        />
-        <Button
-            title="Settings"
-            onPress={() => navigation.navigate('Settings')}
-            style={{ padding: 20, marginHorizontal: 20 }}
-        />
-        </View>
-        */}
-       
-        {/* Add more buttons as needed. i was going to have a link to the products stack and maybe one or two other places. ik we wanted a favorites page but idk if thats feasible */}
-      </View>
-      <View style={styles.aboutContainer}>
-        <Text style={styles.aboutText}>At Fellas Co., our mission is simple: to provide an unparalleled shopping experience centered around you. We're more than just a store; we're a community dedicated to delivering exceptional service and satisfaction to every customer. Whether you're seeking timeless fashion pieces or curated lifestyle products, we're here to inspire and support you on your journey. Welcome to Fellas Co., where your satisfaction is our top priority."</Text>
-        
-      </View>
-      <View>
-
-      </View>
-    </ScrollView>
-  );
-}
-//--------------------START OF CHECKOUT FUNCTION--------------------
-function Checkout({ navigation }){
-  return(
-  <ScrollView>
-    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-      Checkout
-    </Text>
-  </ScrollView>
-  );
-}
-//--------------------START OF THANKS FUNCTION--------------------
-function Thanks({ navigation }){
-  return(
-  <ScrollView>
-    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-      Thank You!
-    </Text>
-  </ScrollView>
-  );
-}
-//--------------------START OF CART FUNCTION--------------------
-function Cart({ navigation }){
-  return(
-  <ScrollView>
-    <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-      Cart
-    </Text>
-  </ScrollView>
-  );
 }
 
 
 //--------------------START OF APP FUNCTION--------------------
 export default function App() {
-  // const navigation = useNavigation();
+
   const [state, dispatch] = React.useReducer(
     (prevState, action) => {
       switch (action.type) {
-        case "RESTORE_TOKEN":
-          return { ...prevState, userToken: action.token, isLoading: false };
-        case "SIGN_IN":
-          return { ...prevState, isSignout: false, userToken: action.token };
-        case "SIGN_OUT":
-          return { ...prevState, isSignout: true, userToken: null };
+        case 'RESTORE_TOKEN':
+          return {
+            ...prevState,
+            userToken: action.token,
+            isLoading: false,
+          };
+        case 'SIGN_IN':
+          return {
+            ...prevState,
+            isSignout: false,
+            userToken: action.token,
+          };
+        case 'SIGN_OUT':
+          return {
+            ...prevState,
+            isSignout: true,
+            userToken: null,
+          };
       }
     },
-    { isLoading: true, isSignout: false, userToken: null },
+    {
+      isLoading: true,
+      isSignout: false,
+      userToken: null,
+    }
   );
 
   React.useEffect(() => {
@@ -417,19 +119,16 @@ export default function App() {
       let userToken;
 
       try {
-        userToken = await SecureStore.getItemAsync("userToken");
+        userToken = await SecureStore.getItemAsync('userToken');
       } catch (e) {
         // Restoring token failed
-        console.log(e);
-        console.log("Failed to restore token");
       }
 
       // After restoring token, we may need to validate it in production apps
 
       // This will switch to the App screen or Auth screen and this loading
       // screen will be unmounted and thrown away.
-
-      // dispatch({ type: 'RESTORE_TOKEN', token: userToken });
+      dispatch({ type: 'RESTORE_TOKEN', token: userToken });
     };
 
     bootstrapAsync();
@@ -438,100 +137,45 @@ export default function App() {
   const authContext = React.useMemo(
     () => ({
       signIn: async (data) => {
-        console.log(data);
         // In a production app, we need to send some data (usually username, password) to server and get a token
-
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `SecureStore`
         // In the example, we'll use a dummy token
-        dispatch({ type: "SIGN_IN", token: data.token });
+
+        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
-      signOut: () => dispatch({ type: "SIGN_OUT" }),
+      signOut: () => dispatch({ type: 'SIGN_OUT' }),
       signUp: async (data) => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
         // After getting token, we need to persist the token using `SecureStore`
         // In the example, we'll use a dummy token
 
-        dispatch({ type: "SIGN_IN", token: "dummy-auth-token" });
+        dispatch({ type: 'SIGN_IN', token: 'dummy-auth-token' });
       },
     }),
-    [],
+    []
   );
 
   return (
-    <AuthContext.Provider value={authContext}>
-    <NavigationContainer >
-      <Tab.Navigator  screenOptions={{headerShown: false}}>
-        {state.userToken != null ? (
-          //START FRAGMENT
-          <>
-          <Tab.Screen name="Home" component={WelcomeNavigator} />
-          <Tab.Screen name="Shopping" component={ShoppingNavigator} />
-          <Tab.Screen name="Settings" component={SettingsNavigator} />
-          </>
-          //END FRAGMENT
-        ) : (
-          <Tab.Screen name="SignIn" component={SignIn} />
-        )}
-        
-      </Tab.Navigator>
-    </NavigationContainer>
+
+    <AuthContext.Provider value={authContext} >
+      <NavigationContainer >
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {state.userToken != null ? (
+            //START FRAGMENT
+            <>
+              <Stack.Screen name="Welcome" component={Welcome} />
+              <Stack.Screen name="HomeTabs" component={HomeTabs} />
+              <Stack.Screen name="Shopping" component={ShoppingNavigator} />
+            </>
+            //END FRAGMENT
+          ) : (
+            <Stack.Screen name="SignIn" component={SignIn} />
+          )}
+
+        </Stack.Navigator>
+      </NavigationContainer>
     </AuthContext.Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    alignItems: 'center',
-    paddingVertical: 20,
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  bannerContainer: {
-    width: '100%',
-    height: 200, // Adjust height as needed
-    marginBottom: 20,
-  },
-  bannerImage: {
-    width: '100%',
-    height: '100%',
-  },
-  navigationContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 20,
-  },
-  
-  
-  button: {
-    backgroundColor: '#007bff',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    marginHorizontal: 10, // Adjust horizontal margin
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  aboutContainer: {
-    width: '80%',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 5,
-    padding: 10,
-  },
-  aboutText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-});
-
-//hi
