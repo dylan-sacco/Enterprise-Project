@@ -63,8 +63,7 @@ function CheckoutNavigator(){
 function SettingsNavigator(){
   return(
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Settings" component={settings} />
-      <Stack.Screen name="Account" component={account} />
+      <Stack.Screen name="Settings" component={settings}/>
     </Stack.Navigator>
   );
 }
@@ -303,24 +302,16 @@ function ProductScreen({ route, navigation }) {
     </View>
   );
 }
-//--------------------START OF ACCOUNT SETTINGS FUNCTION--------------------
-function account({ navigation }){
-  return(
-    <ScrollView>
-      <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-        Account
-      </Text>
-    </ScrollView>
-  );
-}
 //--------------------START OF SETTINGS FUNCTION--------------------
 function settings({ navigation }){
   return(
-    <ScrollView>
-      <Text style={{ fontSize: 30, textAlign: "center", width: "100%" }}>
-        Settings
-      </Text>
-    </ScrollView>
+    <SafeAreaView style={{flex:1}}>
+      <ScrollView contentContainerStyle={styles.Settingscontainer}>
+        <View style={styles.profile}>
+
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 //--------------------START OF WELCOME FUNCTION--------------------
@@ -507,8 +498,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 20,
   },
-  
-  
   button: {
     backgroundColor: '#007bff',
     paddingHorizontal: 20,
@@ -532,6 +521,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+
+
+  //Settings Styling
+  Settingscontainer: {
+    paddingVertical:24,
+  }
 });
 
 //hi
