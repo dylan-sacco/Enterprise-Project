@@ -3,7 +3,7 @@ import React, { useState, useContext } from "react";
 import { StatusBar, setStatusBarStyle } from "expo-status-bar";
 import * as Linking from "expo-linking";
 import * as SecureStore from "expo-secure-store";
-import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity, TextInput, Settings, } from "react-native";
+import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity, TextInput, } from "react-native";
 
 //--------------------NAVIGATION IMPORTS--------------------
 import { NavigationContainer } from "@react-navigation/native";

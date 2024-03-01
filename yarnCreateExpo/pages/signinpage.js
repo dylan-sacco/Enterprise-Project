@@ -41,7 +41,8 @@ function SignIn() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        signIn({ token: user.stsTokenManager.accessToken });
+        // signIn({ token: user.stsTokenManager.accessToken });
+        setErrorCodes("You have successfully signed up!, Please sign in")
       })
       .catch((error) => {
         setErrorCodes(error);

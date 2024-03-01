@@ -5,7 +5,7 @@ import { styles } from "../styles/styles";
 //--------------------START OF WELCOME FUNCTION--------------------
 function Welcome({ navigation }) {
   let navToShop = () => {
-    navigation.navigate('HomeTabs' , { screen: 'Home' })
+    navigation.navigate('HomeTabs' , { screen: 'HomeStack' })
   };
     return (
       <ScrollView contentContainerStyle={styles.container}>
