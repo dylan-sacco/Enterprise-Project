@@ -1,5 +1,16 @@
 import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, Image, Platform, ScrollView, Button, TouchableOpacity, TextInput, } from "react-native";
 
+export const COLORS = {
+  D2: "#b59496",
+  D1: "#9a7c7e",
+  Mauve: "#826061",
+  DarkMauve: "#421b2e",
+  L3: "#a48279",
+  L2: "#b39887",
+  L1: "#d2bb83",
+
+}
+
 const styles = StyleSheet.create({
     container: {
       flexGrow: 1,

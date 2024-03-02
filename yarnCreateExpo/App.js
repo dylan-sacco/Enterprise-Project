@@ -66,7 +66,7 @@ function ShoppingNavigator() {
 }
 function HomeTabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{ headerShown: false}}>
       <Tab.Screen name="Profile" component={SettingsNavigator} />
       <Tab.Screen name="HomeStack" component={ShoppingNavigator} />
       <Tab.Screen name="Cart" component={CheckoutNavigator} />

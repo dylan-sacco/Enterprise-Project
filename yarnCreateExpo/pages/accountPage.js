@@ -1,6 +1,8 @@
 import React from "react";
-import { ScrollView, Text, TouchableOpacity } from "react-native";
+import { ScrollView, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AuthContext } from "../auth/AuthContext";
+
+import { COLORS } from "../styles/styles";
 
 //--------------------START OF ACCOUNT SETTINGS FUNCTION--------------------
 function Account({ navigation }) {

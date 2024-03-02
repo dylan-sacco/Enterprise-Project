@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
-import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from "react-native";
 import { auth, app } from '../firebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { AuthContext } from "../auth/AuthContext";
+
+import { COLORS } from "../styles/styles";
 
 //--------------------START OF SIGNIN FUNCTION--------------------
 
@@ -51,7 +53,9 @@ function SignIn() {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Text>Sign In</Text>
+      <Text
+      style={styles.heading}
+      >Sign In</Text>
 
       <View style={styles.inputContainer}>
         <TextInput
@@ -67,11 +71,16 @@ function SignIn() {
           style={styles.input}
           secureTextEntry
         />
+        {emailError ? <Text style={{ color: "red" }}>{emailError}</Text> : null}
       </View>
-      {emailError ? <Text style={{ color: "red" }}>{emailError}</Text> : null}
+      
       <View style={styles.buttonContainer}>
-        <Button title="Log In" onPress={signin} style={styles.button} />
-        <Button title="Sign Up" onPress={signup} style={styles.button} />
+        <TouchableOpacity onPress={signin} style={styles.button} >
+          <Text style={styles.buttonText}>Log In</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={signup} style={styles.button}>
+          <Text style={styles.buttonText}>Sign Up</Text>
+        </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
@@ -84,12 +93,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: COLORS.DarkMauve
+
+  },
+  heading: {
+    padding: 10,
+    borderRadius: 10,
+    overflow: 'hidden',
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: COLORS.L1,
+    backgroundColor: '#00000033',
   },
   inputContainer: {
     width: '80%'
   },
   input: {
-    backgroundColor: 'white',
+    backgroundColor: '#fffa',
     paddingHorizontal: 15,
     paddingVertical: 10,
     borderRadius: 10,
@@ -99,7 +121,7 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 20,
   },
   button: {
     backgroundColor: '#0782F9',
@@ -107,6 +129,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
+    marginTop: 5,
   },
   buttonOutline: {
     backgroundColor: 'white',
