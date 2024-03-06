@@ -81,25 +81,25 @@ public class DatabaseConnection{
         sql = "INSERT INTO \"fellas\".\"User\" (Name, Address, Email, Password) VALUES (?, ?, ?, ?);";
         
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newUser.getName());
-            preparedStatement.setString(1, newUser.getAddress());
-            preparedStatement.setString(2, newUser.getEmail());
-            preparedStatement.setString(3, newUser.getPassword());
+            preparedStatement.setString(1, newUser.getName());
+            preparedStatement.setString(2, newUser.getAddress());
+            preparedStatement.setString(3, newUser.getEmail());
+            preparedStatement.setString(4, newUser.getPassword());
 
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void User_UPDATE(User newUser) throws Exception {
         sql = "UPDATE \"fellas\".\"User\" SET Name = ?, Address = ?, Email = ?, Password = ? WHERE User_ID = ?;";
 
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newUser.getName());
-            preparedStatement.setString(1, newUser.getAddress());
-            preparedStatement.setString(2, newUser.getEmail());
-            preparedStatement.setString(3, newUser.getPassword());
-            preparedStatement.setString(4, newUser.getUserID());
+            preparedStatement.setString(1, newUser.getName());
+            preparedStatement.setString(2, newUser.getAddress());
+            preparedStatement.setString(3, newUser.getEmail());
+            preparedStatement.setString(4, newUser.getPassword());
+            preparedStatement.setString(5, newUser.getUserID());
 
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void User_DELETE(String UserID) throws Exception {
@@ -159,25 +159,25 @@ public class DatabaseConnection{
         sql = "INSERT INTO \"fellas\".\"Product\" (Name, Description, Price, Image) VALUES (?, ?, ?, ?);";
 
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newProduct.getName());
-            preparedStatement.setString(1, newProduct.getDescription());
-            preparedStatement.setDouble(2, newProduct.getPrice());
-            preparedStatement.setBytes(3, newProduct.getImage());
+            preparedStatement.setString(1, newProduct.getName());
+            preparedStatement.setString(2, newProduct.getDescription());
+            preparedStatement.setDouble(3, newProduct.getPrice());
+            preparedStatement.setBytes(4, newProduct.getImage());
         
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void Product_UPDATE(Product newProduct) throws Exception {
         sql = "UPDATE \"fellas\".\"Product\" SET Name = ?, Description = ?, Price = ?, Image = ? WHERE Product_ID = ?;";
 
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newProduct.getName());
-            preparedStatement.setString(1, newProduct.getDescription());
-            preparedStatement.setDouble(2, newProduct.getPrice());
-            preparedStatement.setBytes(3, newProduct.getImage());
-            preparedStatement.setString(4, newProduct.getProductID());
+            preparedStatement.setString(1, newProduct.getName());
+            preparedStatement.setString(2, newProduct.getDescription());
+            preparedStatement.setDouble(3, newProduct.getPrice());
+            preparedStatement.setBytes(4, newProduct.getImage());
+            preparedStatement.setString(5, newProduct.getProductID());
         
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void Product_DELETE(String ProductID) throws Exception {
@@ -221,21 +221,21 @@ public class DatabaseConnection{
         sql = "INSERT INTO \"fellas\".\"Order\" (User_ID, Total_Price) VALUES (?, ?);";
 
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newOrder.getUserID());
-            preparedStatement.setDouble(1, newOrder.getTotalPrice());
+            preparedStatement.setString(1, newOrder.getUserID());
+            preparedStatement.setDouble(2, newOrder.getTotalPrice());
 
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void Order_UPDATE(Order newOrder) throws Exception {
         sql = "UPDATE \"fellas\".\"Order\" SET User_ID = ?, Total_Price = ? WHERE Order_ID = ?;";
 
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newOrder.getUserID());
-            preparedStatement.setDouble(1, newOrder.getTotalPrice());
-            preparedStatement.setString(2, newOrder.getOrderID());
+            preparedStatement.setString(1, newOrder.getUserID());
+            preparedStatement.setDouble(2, newOrder.getTotalPrice());
+            preparedStatement.setString(3, newOrder.getOrderID());
 
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void Order_DELETE(String OrderID) throws Exception {
@@ -283,25 +283,25 @@ public class DatabaseConnection{
         sql = "INSERT INTO \"fellas\".\"Invoice\" (Order_ID, Product_ID, Quantity, Price) VALUES (?, ?, ?, ?);";
 
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newInvoice.getOrderID());
-            preparedStatement.setString(1, newInvoice.getProductID());
-            preparedStatement.setInt(2, newInvoice.getQuantity());
-            preparedStatement.setDouble(3, newInvoice.getPrice());
+            preparedStatement.setString(1, newInvoice.getOrderID());
+            preparedStatement.setString(2, newInvoice.getProductID());
+            preparedStatement.setInt(3, newInvoice.getQuantity());
+            preparedStatement.setDouble(4, newInvoice.getPrice());
 
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void Invoice_UPDATE(Invoice newInvoice) throws Exception {
         sql = "UPDATE \"fellas\".\"Invoice\" SET Order_ID = ?, Product_ID = ?, Quantity = ?, Price = ? WHERE Invoice_ID = ?;";
 
         preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(0, newInvoice.getOrderID());
-            preparedStatement.setString(1, newInvoice.getProductID());
-            preparedStatement.setInt(2, newInvoice.getQuantity());
-            preparedStatement.setDouble(3, newInvoice.getPrice());
-            preparedStatement.setString(4, newInvoice.getInvoiceID());
+            preparedStatement.setString(1, newInvoice.getOrderID());
+            preparedStatement.setString(2, newInvoice.getProductID());
+            preparedStatement.setInt(3, newInvoice.getQuantity());
+            preparedStatement.setDouble(4, newInvoice.getPrice());
+            preparedStatement.setString(5, newInvoice.getInvoiceID());
 
-        preparedStatement.executeUpdate(sql);
+        preparedStatement.executeUpdate();
     }
 
     public void Invoice_DELETE(String InvoiceID) throws Exception {
