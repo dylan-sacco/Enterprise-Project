@@ -51,8 +51,10 @@ function CheckoutNavigator() {
 function SettingsNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }}>
-      <Stack.Screen name="Account" component={Account} />
+
       <Stack.Screen name="Settings" component={SettingsPage} />
+      <Stack.Screen name="Account" component={Account} />
+      
     </Stack.Navigator>
   );
 }
