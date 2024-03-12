@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from "react-native";
-import { auth, app } from '../firebaseConfig';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from '../firebaseConfig';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { AuthContext } from "../auth/AuthContext";
 
 import { COLORS } from "../styles/styles";
+import { debuglog } from "util";
 
 //--------------------START OF SIGNIN FUNCTION--------------------
 
@@ -15,7 +16,7 @@ function SignIn() {
   const [passwordError, setPasswordError] = useState("");
 
   const { signIn } = React.useContext(AuthContext);
-
+  
   function setErrorCodes(error) {
     const { code, message } = error;
     //   let formattedCode =
@@ -25,11 +26,19 @@ function SignIn() {
     let formattedCode = code;
     setEmailError(formattedCode);
   }
-
+  
+  const auth = getAuth();
   const signin = async () => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("Signed in");
+    .then((userCredential) => {
+        const { email, emailVerified } = userCredential.user;
+        console.log(email, emailVerified);
+        if(!emailVerified) {
+          sendEmailVerification(userCredential.user);
+          setEmailError("Please verify your email before signing in. A new verification email has been sent to you.");
+          return;
+        }
+        // console.log("Signed in");
         const user = userCredential.user;
         signIn({ token: user.stsTokenManager.accessToken });
       })
@@ -43,6 +52,7 @@ function SignIn() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        sendEmailVerification(user);
         // signIn({ token: user.stsTokenManager.accessToken });
         setErrorCodes("You have successfully signed up!, Please sign in")
       })
