@@ -4,7 +4,24 @@ import { ScrollView, Text, View, Button, Platform, TextInput, Image, TouchableOp
 import { ProductBubble } from "../components/productBubble";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { styles } from "../styles/styles.js";
+
 function HomeScreen({ navigation }) {
+
+  const [products, setProducts] = useState([
+    { name: 'Shoe', price: 23.75, image: 'https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1584562506/628717_H9H80_1074_001_100_0000_Light-Mens-Gucci-Off-The-Grid-high-top-sneaker.jpg' },
+    { name: 'Belt', price: 23.75, image: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQFBGrDfewGS86JSoe8g4ywc4KtHtaomDauwj2HUTkPTZOJBj0tea2cH09Dd3hH_IMwcQSbI8Nmeh7bum0KdvfiyJki0yKWZVr5-F12CCIWWz8Z5SvsRUKh&usqp=CAc' },
+    { name: 'Corn Dog', price: 23.75, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg' },
+  ]);
+
+  const addMoreProducts = () => {
+    setProducts([
+      ...products,
+      {image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg", price: "23.75", name: "Corn Dog"},
+      // Add more products here
+    ]);
+  };
+
   return (
     <ScrollView>
       <Text style={{fontSize:30, textAlign:'center', width:'100%',}}>Welcome to{"\n"}Fellas Clothing CO</Text>
@@ -25,7 +42,8 @@ function HomeScreen({ navigation }) {
         }}
         >
       </Button>
-      <View style={
+      <View 
+      style={
       { 
         flex: 1, 
         alignItems: 'center', 
@@ -40,31 +58,17 @@ function HomeScreen({ navigation }) {
     }}>
       
 
-      <View style={{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'left',
-        width: '100%',
-        alignSelf: 'center',
-        
-        ...Platform.select({
-          web: {
-            maxWidth:1000
-          }
-        })
-      }}>
-      <ProductBubble image="https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1584562506/628717_H9H80_1074_001_100_0000_Light-Mens-Gucci-Off-The-Grid-high-top-sneaker.jpg" price="23.75" name="Shoe"/>
-      <ProductBubble image="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQFBGrDfewGS86JSoe8g4ywc4KtHtaomDauwj2HUTkPTZOJBj0tea2cH09Dd3hH_IMwcQSbI8Nmeh7bum0KdvfiyJki0yKWZVr5-F12CCIWWz8Z5SvsRUKh&usqp=CAc" price="23.75" name="Belt"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
-      <ProductBubble image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg" price="23.75" name="Corn Dog"/>
+      <View 
+        style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'left', width: '100%', alignSelf: 'center', ...Platform.select({ web: { maxWidth:1000 } })}} 
+        id=""
+      >
+        {products.map((product, index) => ( <ProductBubble key={index} image={product.image} price={product.price} name={product.name}/> ))}
       </View>
+      <TouchableOpacity style={styles.button} onPress={addMoreProducts}>
+        <Text>View More</Text>
+      </TouchableOpacity>
     </View>
+
     </ScrollView>
   );
 }

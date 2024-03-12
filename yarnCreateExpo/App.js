@@ -116,7 +116,7 @@ export default function App() {
       let userToken;
 
       try {
-        // userToken = await SecureStore.getItemAsync('userToken'); // use this for auto login
+        userToken = await SecureStore.getItemAsync('userToken'); // use this for auto login
       } catch (e) {
         // Restoring token failed
       }
