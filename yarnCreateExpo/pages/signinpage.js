@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     ...Platform.select({
       ios:{width: '80%'},
+      android:{width: '80%'},
     })
   },
   container: {
