@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from "react-native";
-import { app } from '../firebaseConfig';
+import { auth, app } from '../firebaseConfig';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { AuthContext } from "../auth/AuthContext";
 
 import { COLORS } from "../styles/styles";
+import { ImageBackground } from "react-native";
 
 //--------------------START OF SIGNIN FUNCTION--------------------
 
@@ -26,9 +27,9 @@ function SignIn() {
     setEmailError(formattedCode);
   }
   
-  const auth = getAuth();
+  const Auth = getAuth();
   const signin = async () => {
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(Auth, email, password)
     .then((userCredential) => {
         const { email, emailVerified } = userCredential.user;
         console.log(email, emailVerified);
@@ -48,7 +49,7 @@ function SignIn() {
   };
   const signup = async () => {
     // empty for now
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(Auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         sendEmailVerification(user);
@@ -62,35 +63,39 @@ function SignIn() {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Text
-      style={styles.heading}
-      >Sign In</Text>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={text => setEmail(text)}
-          style={styles.input}
-        />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={text => setPassword(text)}
-          style={styles.input}
-          secureTextEntry
-        />
-        {emailError ? <Text style={{ color: "red" }}>{emailError}</Text> : null}
-      </View>
+      <ImageBackground source={require('../assets/signinbackground.jpg')} style={{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+        <View style={styles.signinpanel}>
+          <Text style={styles.heading}>Sign In</Text>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Email"
+              value={email}
+              onChangeText={text => setEmail(text)}
+              style={styles.input}
+            />
+            <TextInput
+              placeholder="Password"
+              value={password}
+              onChangeText={text => setPassword(text)}
+              style={styles.input}
+              secureTextEntry
+            />
+            {emailError ? <Text style={{ color: "red" }}>{emailError}</Text> : null}
+          </View>
+        
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity onPress={signin} style={styles.button} >
+              <Text style={styles.buttonText}>Log In</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={signup} style={styles.button}>
+              <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
       
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={signin} style={styles.button} >
-          <Text style={styles.buttonText}>Log In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={signup} style={styles.button}>
-          <Text style={styles.buttonText}>Sign Up</Text>
-        </TouchableOpacity>
-      </View>
+
+      
     </KeyboardAvoidingView>
   );
 }
@@ -98,6 +103,19 @@ function SignIn() {
 export default SignIn;
 
 const styles = StyleSheet.create({
+  signinpanel: {
+    width: '50%',
+    padding: 20,
+    borderRadius: 10,
+    overflow: 'hidden',
+    backgroundColor: COLORS.FoggedBackgroundDark,
+    // backgroundColor: COLORS.FoggedBackgroundLight,
+    backdropFilter: 'blur(5px)',
+    margin: 'auto',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -133,7 +151,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   button: {
-    backgroundColor: '#0782F9',
+    backgroundColor: '#000000',
     width: '100%',
     padding: 15,
     borderRadius: 10,

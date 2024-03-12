@@ -8,7 +8,8 @@ export const COLORS = {
   L3: "#a48279",
   L2: "#b39887",
   L1: "#d2bb83",
-
+  FoggedBackgroundDark: "rgba(0, 0, 0, 0.6)",
+  FoggedBackgroundLight: "rgba(255, 255, 255, 0.3)",
 }
 
 const styles = StyleSheet.create({
