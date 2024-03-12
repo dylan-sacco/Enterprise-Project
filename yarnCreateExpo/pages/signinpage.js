@@ -5,7 +5,6 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, se
 import { AuthContext } from "../auth/AuthContext";
 
 import { COLORS } from "../styles/styles";
-import { debuglog } from "util";
 
 //--------------------START OF SIGNIN FUNCTION--------------------
 
