@@ -8,6 +8,8 @@ import { styles } from "../styles/styles.js";
 
 function HomeScreen({ navigation }) {
 
+  const [search, setSearch] = useState('');
+
   const [products, setProducts] = useState([
     { name: 'Shoe', price: 23.75, image: 'https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1584562506/628717_H9H80_1074_001_100_0000_Light-Mens-Gucci-Off-The-Grid-high-top-sneaker.jpg' },
     { name: 'Belt', price: 23.75, image: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQFBGrDfewGS86JSoe8g4ywc4KtHtaomDauwj2HUTkPTZOJBj0tea2cH09Dd3hH_IMwcQSbI8Nmeh7bum0KdvfiyJki0yKWZVr5-F12CCIWWz8Z5SvsRUKh&usqp=CAc' },
@@ -22,8 +24,13 @@ function HomeScreen({ navigation }) {
     ]);
   };
 
+  const filteredProducts = products.filter(product => 
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <ScrollView>
+      
       <Text style={{fontSize:30, textAlign:'center', width:'100%',}}>Welcome to{"\n"}Fellas Clothing CO</Text>
       <Text>Home Screen</Text>
       <Button
@@ -42,6 +49,12 @@ function HomeScreen({ navigation }) {
         }}
         >
       </Button>
+      <TextInput
+        style={{ height: 40, borderColor: 'gray', borderWidth: 1, maxWidth: '100%', marginLeft: 15, marginRight: 15}}
+        onChangeText={text => setSearch(text)}
+        value={search}
+        placeholder="Search products"
+      />
       <View 
       style={
       { 
@@ -56,13 +69,13 @@ function HomeScreen({ navigation }) {
 
         
     }}>
-      
 
       <View 
         style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'left', width: '100%', alignSelf: 'center', ...Platform.select({ web: { maxWidth:1000 } })}} 
         id=""
       >
-        {products.map((product, index) => ( <ProductBubble key={index} image={product.image} price={product.price} name={product.name}/> ))}
+      {/* shows only filtered products by default and if search is empty, just show everything */}
+      {filteredProducts.map((product, index) => ( <ProductBubble key={index} image={product.image} price={product.price} name={product.name}/> ))}
       </View>
       <TouchableOpacity style={styles.button} onPress={addMoreProducts}>
         <Text>View More</Text>
