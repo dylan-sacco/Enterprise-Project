@@ -27,7 +27,7 @@ function SettingsPage({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={[styles.container, darkMode && styles.containerDark]}>
+    // <SafeAreaView style={[styles.container, darkMode && styles.containerDark]}>
       <ScrollView>
         <Text style={[styles.title, darkMode && styles.titleDark]}>Settings</Text>
 
@@ -82,7 +82,7 @@ function SettingsPage({ navigation }) {
           )}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    // </SafeAreaView>
   );
 }
 

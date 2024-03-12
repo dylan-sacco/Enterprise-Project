@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from "react-native";
+import { SafeAreaView, KeyboardAvoidingView, StyleSheet, Text, View, TextInput, Button, TouchableOpacity, Platform} from "react-native";
 import { auth, app } from '../firebaseConfig';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { AuthContext } from "../auth/AuthContext";
@@ -115,6 +115,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
+    ...Platform.select({
+      ios:{width: '80%'},
+    })
   },
   container: {
     flex: 1,
