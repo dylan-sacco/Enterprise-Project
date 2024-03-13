@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class FellasWebServiceApplication {
 
+	// !! This is very important
+	// !! run "mvn package azure-webapp:deploy" to redeploy the webservice after updates - for enzo 
+
 	public static void main(String[] args) {
 		SpringApplication.run(FellasWebServiceApplication.class, args);
 	}
