@@ -63,7 +63,7 @@ function SignIn() {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <ImageBackground source={require('../assets/signinbackground.jpg')} style={{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+      <ImageBackground source={require('../assets/Images/signinbackground.jpg')} style={{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
         <View style={styles.signinpanel}>
           <Text style={styles.heading}>Sign In</Text>
           <View style={styles.inputContainer}>

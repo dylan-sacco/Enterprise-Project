@@ -8,9 +8,15 @@ export const COLORS = {
   L3: "#a48279",
   L2: "#b39887",
   L1: "#d2bb83",
+  JB: '#902',
+  JB2: '#b94',
   FoggedBackgroundDark: "rgba(0, 0, 0, 0.6)",
   FoggedBackgroundLight: "rgba(255, 255, 255, 0.3)",
 }
+
+// export const FONTS = {
+//   Banner: "../assets/fonts/Thei_PersonalUse.otf"
+// }
 
 const styles = StyleSheet.create({
     container: {
@@ -23,15 +29,27 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 20,
       textAlign: 'center',
+      color: COLORS.JB2,
+      fontFamily: 'initial',
     },
     bannerContainer: {
       width: '100%',
-      height: 200, // Adjust height as needed
+      height: 300, // Adjust height as needed
       marginBottom: 20,
     },
     bannerImage: {
       width: '100%',
       height: '100%',
+    },
+    bannerText: {
+      padding: 50,
+      fontSize: 200,
+      fontWeight: 'bold',
+      color: COLORS.JB,
+      textAlign: 'center',
+      fontFamily: 'initial',
+      fontStyle: 'italic',
+      // fontFamily: 'Thei_PersonalUse',
     },
     navigationContainer: {
       flexDirection: 'row',
@@ -41,7 +59,7 @@ const styles = StyleSheet.create({
     
     
     button: {
-      backgroundColor: '#007bff',
+      backgroundColor: COLORS.JB,
       paddingHorizontal: 20,
       paddingVertical: 10,
       marginHorizontal: 10, // Adjust horizontal margin
@@ -57,11 +75,31 @@ const styles = StyleSheet.create({
       borderColor: '#ddd',
       borderRadius: 5,
       padding: 10,
+      backgroundColor: COLORS.FoggedBackgroundDark,
     },
     aboutText: {
       fontSize: 18,
       fontWeight: 'bold',
       marginBottom: 10,
+      color: COLORS.JB2,
+      fontFamily: 'initial',
+    },
+
+    cloudedPanel: {
+      width: '80%',
+      padding: 20,
+      borderRadius: 10,
+      overflow: 'hidden',
+      backgroundColor: COLORS.FoggedBackgroundDark,
+      // backgroundColor: COLORS.FoggedBackgroundLight,
+      backdropFilter: 'blur(5px)',
+      alignSelf: 'center',
+      justifyContent: 'center',
+      alignItems: 'center',
+      ...Platform.select({
+        ios:{width: '80%'},
+        android:{width: '80%'},
+      })
     },
   });
 
