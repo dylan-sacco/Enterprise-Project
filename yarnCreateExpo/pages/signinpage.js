@@ -63,7 +63,7 @@ function SignIn() {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <ImageBackground source={require('../assets/Images/signinbackground.jpg')} style={{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+      <ImageBackground source={require('../assets/Images/test3.jpg')} style={{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
         <View style={styles.signinpanel}>
           <Text style={styles.heading}>Sign In</Text>
           <View style={styles.inputContainer}>
@@ -105,6 +105,7 @@ export default SignIn;
 const styles = StyleSheet.create({
   signinpanel: {
     width: '50%',
+    maxWidth: 600,
     padding: 20,
     borderRadius: 10,
     overflow: 'hidden',
