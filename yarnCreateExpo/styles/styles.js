@@ -36,10 +36,13 @@ const styles = StyleSheet.create({
       width: '100%',
       height: 300, // Adjust height as needed
       marginBottom: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     bannerImage: {
       width: '100%',
-      height: '100%',
+      //height: '100%',
+      // alignSelf: 'center',
     },
     bannerText: {
       padding: 50,

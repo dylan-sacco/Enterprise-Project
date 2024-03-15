@@ -42,8 +42,16 @@ const Tab = createBottomTabNavigator();
 function CheckoutNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }} >
-      <Stack.Screen name="Cart" component={Cart} />
-      <Stack.Screen name="Checkout" component={Checkout} />
+      <Stack.Screen name="Cart" component={Cart} options={{
+        title: 'Fellas Clothing Co.',
+        headerStyle: { backgroundColor: '#111', }, 
+        headerTintColor: '#FFF', 
+        headerTitleStyle: { fontWeight: 'bold', }}}/>
+      <Stack.Screen name="Checkout" component={Checkout} options={{
+        title: 'Fellas Clothing Co.',
+        headerStyle: { backgroundColor: '#111', }, 
+        headerTintColor: '#FFF', 
+        headerTitleStyle: { fontWeight: 'bold', }}}/>
       <Stack.Screen name="Thanks" component={Thanks} />
     </Stack.Navigator>
   );
@@ -52,8 +60,16 @@ function SettingsNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }}>
 
-      <Stack.Screen name="Settings" component={SettingsPage} />
-      <Stack.Screen name="Account" component={Account} />
+      <Stack.Screen name="Settings" component={SettingsPage} options={{
+        title: 'Fellas Clothing Co.',
+        headerStyle: { backgroundColor: '#111', }, 
+        headerTintColor: '#FFF', 
+        headerTitleStyle: { fontWeight: 'bold', }}}/>
+      <Stack.Screen name="Account" component={Account} options={{
+        title: 'Fellas Clothing Co.',
+        headerStyle: { backgroundColor: '#111', }, 
+        headerTintColor: '#FFF', 
+        headerTitleStyle: { fontWeight: 'bold', }}}/>
       
     </Stack.Navigator>
   );
@@ -61,8 +77,16 @@ function SettingsNavigator() {
 function ShoppingNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: true }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{
+        title: 'Fellas Clothing Co.',
+        headerStyle: { backgroundColor: '#111', }, 
+        headerTintColor: '#FFF', 
+        headerTitleStyle: { fontWeight: 'bold', }}}/>
+      <Stack.Screen name="Products" component={ProductScreen} initialParams={{ productId: 'ca724' }} options={{
+        title: 'Fellas Clothing Co.',
+        headerStyle: { backgroundColor: '#111', }, 
+        headerTintColor: '#FFF', 
+        headerTitleStyle: { fontWeight: 'bold', }}}/>
     </Stack.Navigator>
   );
 }

@@ -10,8 +10,8 @@ function Welcome({ navigation }) {
     
   };
     return (
-      <View style={{backgroundColor: '#090909', height: '100%', justifyContent: 'center'}}>
-        <ScrollView contentContainerStyle={styles.container} style={{backgroundColor: '#111', maxWidth: 1600, alignSelf: 'center'}}>
+      <ScrollView style={{backgroundColor: '#090909', height: '100%',}}>
+        <View contentContainerStyle={styles.container} style={{backgroundColor: '#111', maxWidth: 1400, alignSelf: 'center'}}>
           <View style={styles.bannerContainer}>
             <ImageBackground source={require('../assets/Images/bannerbackground.jpg')}
               resizeMode="cover"
@@ -37,8 +37,8 @@ function Welcome({ navigation }) {
             </Text>
           </TouchableOpacity>
           
-        </ScrollView>
-      </View>
+        </View>
+      </ScrollView>
     );
   }
   

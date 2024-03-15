@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { ScrollView, Text, View, Button, Platform, TextInput, Image, TouchableOpacity,  } from "react-native";
+import { ScrollView, Text, View, Button, Platform, TextInput, Image, TouchableOpacity, ImageBackground, } from "react-native";
 import { ProductBubble } from "../components/productBubble";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -29,12 +29,21 @@ function HomeScreen({ navigation }) {
   );
 
   return (
-    <View style={{backgroundColor: '#090909', height: '100%', justifyContent: 'center'}}>
-      <ScrollView contentContainerStyle={styles.container} style={{backgroundColor: '#111', width: '100%', maxWidth: 1600, alignSelf: 'center'}}>
+    <ScrollView style={{backgroundColor: '#090909', height: '100%',}}>
+      <View contentContainerStyle={styles.container} style={{backgroundColor: '#111', width: '100%', maxWidth: 1400, alignSelf: 'center', alignItems: 'center'}}>
         
-        <Text style={{fontSize:30, textAlign:'center', width:'100%',}}>Welcome to{"\n"}Fellas Clothing Co.</Text>
-        <Text>Home Screen</Text>
-        <Button
+        {/* <Text style={{fontSize:30, textAlign:'center', width:'100%',}}>Welcome to{"\n"}Fellas Clothing Co.</Text>
+        <Text>Home Screen</Text> */}
+        <View style={styles.bannerContainer}>
+          <ImageBackground source={require('../assets/Images/bannerbackground.jpg')}
+              resizeMode="cover"
+              style={styles.bannerImage}>
+                <View>
+                  <Text style={styles.bannerText}>Fellas</Text>
+                </View>
+            </ImageBackground>
+          </View>
+        {/* <Button
           title="Go to Products"
           onPress={() => {
             // navigation.navigate('Products', {productId: 'ca724'}); // use navigate to go to an existing screen
@@ -49,9 +58,9 @@ function HomeScreen({ navigation }) {
             console.log("User is signed " + isSignedIn);
           }}
           >
-        </Button>
+        </Button> */}
         <TextInput
-          style={{ height: 40, borderColor: 'gray', borderWidth: 1, maxWidth: '100%', marginLeft: 15, marginRight: 15}}
+          style={{ paddingHorizontal: 15, height: 40, borderColor: 'gray', borderWidth: 1, width: '80%', marginLeft: 15, marginRight: 15, color: 'white', backgroundColor: '#222', allignSelf: 'center',}}
           onChangeText={text => setSearch(text)}
           value={search}
           placeholder="Search products"
@@ -83,8 +92,8 @@ function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </View>
 
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
