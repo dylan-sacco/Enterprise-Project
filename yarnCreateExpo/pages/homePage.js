@@ -29,8 +29,8 @@ function HomeScreen({ navigation }) {
   );
 
   return (
-    <ScrollView style={{backgroundColor: '#090909', height: '100%',}}>
-      <View contentContainerStyle={styles.container} style={{backgroundColor: '#111', width: '100%', maxWidth: 1400, alignSelf: 'center', alignItems: 'center'}}>
+    <ScrollView style={{backgroundColor: '#222', height: '100%',}}>
+      <View contentContainerStyle={styles.container} style={{backgroundColor: '#111',height: '100%', width: '100%', maxWidth: 1400, alignSelf: 'center', alignItems: 'center'}}>
         
         {/* <Text style={{fontSize:30, textAlign:'center', width:'100%',}}>Welcome to{"\n"}Fellas Clothing Co.</Text>
         <Text>Home Screen</Text> */}

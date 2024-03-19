@@ -10,8 +10,8 @@ function Welcome({ navigation }) {
     
   };
     return (
-      <ScrollView style={{backgroundColor: '#090909', height: '100%',}}>
-        <View contentContainerStyle={styles.container} style={{backgroundColor: '#111', maxWidth: 1400, alignSelf: 'center'}}>
+      <ScrollView style={{backgroundColor: '#222', height: '100%',}}>
+        <View contentContainerStyle={styles.container} style={{backgroundColor: '#111', height: '100%', maxWidth: 1400, alignSelf: 'center'}}>
           <View style={styles.bannerContainer}>
             <ImageBackground source={require('../assets/Images/bannerbackground.jpg')}
               resizeMode="cover"

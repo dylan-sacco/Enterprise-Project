@@ -104,6 +104,16 @@ const styles = StyleSheet.create({
         android:{width: '80%'},
       })
     },
+
+    productImage: {
+      overflow: "hidden",
+      alignSelf: "center",
+      width: "100%",
+      height: "100%",
+      // height: 800,
+      // width: 800,
+      borderRadius: 20,
+    }
   });
 
   const ProductBubbleStyles = StyleSheet.create({
