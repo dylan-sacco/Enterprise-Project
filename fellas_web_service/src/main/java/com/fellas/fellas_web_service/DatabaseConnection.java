@@ -11,12 +11,15 @@ import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class DatabaseConnection{
-    final static String connectionString = "jdbc:sqlserver://fellas-server.database.windows.net:1433;database=fellas-data;user=epollino@fellas-server;password=4ufYp5*j&ICwc4IU;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-
+    @Value("${database.connectionString}")
+    private static String connectionString;
+    
     static public Connection connection;
     static Statement statement;
     static PreparedStatement preparedStatement;
