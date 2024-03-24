@@ -3,19 +3,24 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
+  item:{
+    padding: 10,
+    borderColor: "black",
+    borderBottomWidth: 1,
+    backgroundColor: "#e5e5e5",
+  },
   container: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#e5e5e5",
-    padding: 10
+    padding: 10,
   },
   padding: {
     padding: 5,
     justifyContent: "space-between",
     flexDirection: "row",
-    borderColor: "black",
-    borderWidth: 1,
+    // borderColor: "black",
+    // borderWidth: 1,
   },
   button: {
     padding: 10,
@@ -23,15 +28,22 @@ const style = StyleSheet.create({
     borderRadius: 7,
     flex: 1,
     alignItems: "center",
+  },
+  checkoutButton: {
+    padding: 10,
+    margin: 10,
+    backgroundColor: "lightblue",
+    borderRadius: 7,
+    alignItems: "center",
   }
 });
 
 const CartItem = (props) => {
 
   return (
-    <View>
+    <View style={style.item}>
       {/* Image and text */}
-      <View style={style.container}>
+      <View style={[style.container]}>
         <Text>Image</Text>
         <View>
           <View style={style.padding}>
@@ -66,7 +78,7 @@ const CartItem = (props) => {
 function Cart({ navigation }) {
   return (
     <View style={{justifyContent: "space-between", flex: 1}}>
-      <ScrollView>
+      <ScrollView style={{maxWidth: "800px", alignSelf: "center", width: "100%"}}>
         <CartItem productID="1" />
         <CartItem productID="2" />
         <CartItem productID="3" />
@@ -76,7 +88,7 @@ function Cart({ navigation }) {
       
 
       <View>
-        <TouchableOpacity style={[style.button, {flex:0, margin:10, backgroundColor:"lightblue"}]}>
+        <TouchableOpacity style={style.checkoutButton}>
           <Text>Checkout</Text>
         </TouchableOpacity>
       </View>
