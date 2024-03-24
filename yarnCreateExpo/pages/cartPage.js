@@ -76,6 +76,10 @@ const CartItem = (props) => {
 };
 
 function Cart({ navigation }) {
+  let navToCheckout = () => {
+    navigation.push('Checkout')
+    
+  };
   return (
     <View style={{justifyContent: "space-between", flex: 1}}>
       <ScrollView>
@@ -90,7 +94,8 @@ function Cart({ navigation }) {
       
 
       <View>
-        <TouchableOpacity style={style.checkoutButton}>
+        <TouchableOpacity style={style.checkoutButton}
+        onPress={navToCheckout}>
           <Text>Checkout</Text>
         </TouchableOpacity>
       </View>
