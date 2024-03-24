@@ -1,0 +1,13 @@
+Create Cart Page:
+Save cart data to the Local instance of the browser or app storage.
+    this will allow the user to close the browser and come back to the cart later.
+All option to remove items from the cart.
+Show product total.
+show option to continue to shop or checkout.
+
+Create Checkout Page:
+ask user for email and address, address,  and other details.
+askk for method of payment, this will be skipped because we are not using real payment method.
+Show a summary of the order and ask for confirmation to place the order.
+Show a confirmation message after the order is placed and send an email with the order details to the user.
+* we should probably save the order details to the database
