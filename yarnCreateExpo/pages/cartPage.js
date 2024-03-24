@@ -78,12 +78,14 @@ const CartItem = (props) => {
 function Cart({ navigation }) {
   return (
     <View style={{justifyContent: "space-between", flex: 1}}>
-      <ScrollView style={{maxWidth: "800px", alignSelf: "center", width: "100%"}}>
+      <ScrollView>
+        <View  style={{maxWidth: "800px", alignSelf: "center", width: "100%"}}>
         <CartItem productID="1" />
         <CartItem productID="2" />
         <CartItem productID="3" />
         <CartItem productID="4" />
         <CartItem productID="5" />
+        </View>
       </ScrollView>
       
 
