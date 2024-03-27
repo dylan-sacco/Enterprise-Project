@@ -15,7 +15,7 @@ function HomeScreen({ navigation }) {
     { name: 'Belt', price: 23.75, image: 'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQFBGrDfewGS86JSoe8g4ywc4KtHtaomDauwj2HUTkPTZOJBj0tea2cH09Dd3hH_IMwcQSbI8Nmeh7bum0KdvfiyJki0yKWZVr5-F12CCIWWz8Z5SvsRUKh&usqp=CAc' },
     { name: 'Corn Dog', price: 23.75, image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/CornDog.jpg/1200px-CornDog.jpg' },
   ]);
-
+  
   const addMoreProducts = () => {
     setProducts([
       ...products,
