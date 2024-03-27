@@ -30,6 +30,7 @@ public class DatabaseConnection{
     static List<Product>  products  =  new ArrayList<Product>();
     static List<Order>    orders    =  new ArrayList<Order>();
     static List<Invoice>  invoices  =  new ArrayList<Invoice>();
+    static List<Cart>     carts     =  new ArrayList<Cart>();
 
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -309,6 +310,149 @@ public class DatabaseConnection{
 
     public void Invoice_DELETE(String InvoiceID) throws Exception {
         sql = "DELETE FROM \"fellas\".\"Invoice\" WHERE Invoice_ID = '" + InvoiceID + "';";
+        statement.executeUpdate(sql);
+    }
+    //-------------------------------------------Cart Methods------------------------------------------
+    public String Cart_SELECT() throws Exception {
+        carts.clear();
+        sql = "SELECT * FROM \"fellas\".\"Cart\";";
+        resultSet = statement.executeQuery(sql);
+
+        while(resultSet.next()){
+            carts.add(new Cart(resultSet.getString("Checkout_ID"), 
+                                     resultSet.getString("User_ID"),
+                                     resultSet.getString("Product_ID"),
+                                     resultSet.getInt("Quantity")));
+        }
+
+        String json = gson.toJson(carts);
+
+        return json;
+    }
+
+    public String Cart_SELECT(String CheckoutID) throws Exception {
+        carts.clear();
+        sql = "SELECT * FROM \"fellas\".\"Cart\" WHERE Checkout_ID = '" + CheckoutID + "';";
+        resultSet = statement.executeQuery(sql);
+
+        while(resultSet.next()){
+            carts.add(new Cart(resultSet.getString("Checkout_ID"), 
+                                     resultSet.getString("User_ID"),
+                                     resultSet.getString("Product_ID"),
+                                     resultSet.getInt("Quantity")));
+        }
+
+        String json = gson.toJson(carts);
+
+        return json;
+    }
+
+    public String Cart_SELECT_User(String UserID) throws Exception {
+        carts.clear();
+        sql = "SELECT * FROM \"fellas\".\"Cart\" WHERE User_ID = '" + UserID + "';";
+        resultSet = statement.executeQuery(sql);
+
+        while(resultSet.next()){
+            carts.add(new Cart(resultSet.getString("Checkout_ID"), 
+                                     resultSet.getString("User_ID"),
+                                     resultSet.getString("Product_ID"),
+                                     resultSet.getInt("Quantity")));
+        }
+
+        String json = gson.toJson(carts);
+
+        return json;
+    }
+
+    public double Cart_SELECT_Price(String UserID, String ProductID) throws Exception{
+        double price = 0;
+        int quantity = 0;
+        
+        sql = "SELECT p.\"Price\" FROM \"fellas\".\"Cart\" c JOIN \"fellas\".\"Product\" p ON c.Product_ID = p.Product_ID WHERE User_ID = '" + UserID + "' AND c.Product_ID = '" + ProductID + "';";
+        resultSet = statement.executeQuery(sql);
+        while(resultSet.next()){
+            price = resultSet.getDouble("Price");
+        }
+
+        sql = "SELECT Quantity FROM \"fellas\".\"Cart\" WHERE User_ID = '" + UserID + "' AND Product_ID = '" + ProductID + "';";
+        resultSet = statement.executeQuery(sql);
+        while(resultSet.next()){
+            quantity = resultSet.getInt("Quantity");
+        }
+
+        return price * quantity;
+    }
+
+    public double Cart_SELECT_Total(String UserID) throws Exception {
+        carts.clear();
+
+        
+        sql = "SELECT dbo.GetTotalCartPrice('" + UserID + "')";
+        resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            return resultSet.getDouble(1);
+        }
+
+        return 0;
+        
+        /*sql = "SELECT * FROM \"fellas\".\"Cart\" WHERE User_ID = '" + UserID + "';";
+        resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            carts.add(new Cart(resultSet.getString("Checkout_ID"), 
+                                     resultSet.getString("User_ID"),
+                                     resultSet.getString("Product_ID"),
+                                     resultSet.getInt("Quantity")));
+            
+        }
+        double total = 0;
+
+        try {
+            for (Cart cart : carts) {
+                total += Cart_SELECT_Price(cart.getUserID(), cart.getProductID());
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+
+        return total;*/
+    }
+
+    public void Cart_INSERT(Cart newCart) throws Exception {
+        sql = "INSERT INTO \"fellas\".\"Cart\" (User_ID, Product_ID, Quantity) VALUES (?, ?, ?);";
+
+        preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, newCart.getUserID());
+            preparedStatement.setString(2, newCart.getProductID());
+            preparedStatement.setInt(3, newCart.getQuantity());
+
+        preparedStatement.executeUpdate();
+    }
+
+    public void Cart_UPDATE(Cart newCart) throws Exception {
+        sql = "UPDATE \"fellas\".\"Cart\" SET User_ID = ?, Product_ID = ?, Quantity = ? WHERE Checkout_ID = ?;";
+
+        preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, newCart.getUserID());
+            preparedStatement.setString(2, newCart.getProductID());
+            preparedStatement.setInt(3, newCart.getQuantity());
+            preparedStatement.setString(4, newCart.getCheckoutID());
+
+        preparedStatement.executeUpdate();
+    }
+
+    public void Cart_DELETE(String CheckoutID) throws Exception {
+        sql = "DELETE FROM \"fellas\".\"Cart\" WHERE Checkout_ID = '" + CheckoutID + "';";
+        statement.executeUpdate(sql);
+    }
+
+    public void Cart_DELETE_User(String UserID) throws Exception {
+        sql = "DELETE FROM \"fellas\".\"Cart\" WHERE User_ID = '" + UserID + "';";
+        statement.executeUpdate(sql);
+    }
+
+    public void Cart_DELETE_Product(String ProductID) throws Exception {
+        sql = "DELETE FROM \"fellas\".\"Cart\" WHERE Product_ID = '" + ProductID + "';";
         statement.executeUpdate(sql);
     }
 }

@@ -14,6 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @SpringBootApplication
@@ -447,6 +450,146 @@ public class FellasWebServiceApplication {
 			database_connection.Invoice_DELETE(invoice.getInvoiceID());
 
 			return new ResponseEntity<>(null, HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+
+
+//-------------------------------------------Cart Methods-------------------------------------------
+	@GetMapping("/cart")
+	public ResponseEntity<List<Cart>> getCart(@RequestHeader("Authorization") String authorization_header, @RequestParam(value = "CeckoutId", required = false) String CheckoutID, @RequestParam(value = "UserId", required = false) String UserID){
+		if(!user_authenticated(authorization_header)){
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+
+		String json = "";
+
+		try {
+			if(CheckoutID == null && UserID == null){
+				json = database_connection.Cart_SELECT();
+			}
+			else if(CheckoutID == null){
+				json = database_connection.Cart_SELECT(UserID);
+			}
+			else{
+				json = database_connection.Cart_SELECT(CheckoutID);
+			}
+
+			if(json == null){
+				return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+			}
+			else{
+				List<Cart> carts = Arrays.asList(gson.fromJson(json, Cart[].class));
+
+				return new ResponseEntity<List<Cart>>(carts, HttpStatus.OK);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PostMapping("/cart")
+	public ResponseEntity<Cart> postCart(@RequestHeader("Authorization") String authorization_header, @RequestBody String newCart) {
+		if(!user_authenticated(authorization_header)){
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+
+		List<Cart> carts = Arrays.asList(gson.fromJson(newCart, Cart[].class));
+
+		try {
+			for (Cart cart : carts){
+				database_connection.Cart_INSERT(cart);
+			}
+
+			return new ResponseEntity<>(carts.get(0), HttpStatus.CREATED);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PutMapping("/cart")
+	public ResponseEntity<Cart> putCart(@RequestHeader("Authorization") String authorization_header, @RequestBody String newCart) {
+		if(!user_authenticated(authorization_header)){
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+
+		List<Cart> carts = Arrays.asList(gson.fromJson(newCart, Cart[].class));
+
+		try {
+			for (Cart cart : carts){
+				database_connection.Cart_UPDATE(cart);
+			}
+
+			return new ResponseEntity<>(carts.get(0), HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@DeleteMapping("/cart")
+	public ResponseEntity<Cart> deleteCart(@RequestHeader("Authorization") String authorization_header, @RequestBody Cart cart) {
+		if(!user_authenticated(authorization_header)){
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+
+		try {
+			database_connection.Cart_DELETE(cart.getCheckoutID());
+
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/cart_price")
+	public ResponseEntity<Double> getCartPrice(@RequestHeader("Authorization") String authorization_header, @RequestParam(value = "UserId", required = true) String UserID, @RequestParam(value = "ProductId", required = true) String ProductID){
+		if(!user_authenticated(authorization_header)){
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+
+		double price = 0;
+
+		try {
+			price = database_connection.Cart_SELECT_Price(UserID, ProductID);
+
+			return new ResponseEntity<Double>(price, HttpStatus.OK);
+		} 
+		catch (Exception e) {
+			System.out.println(e);
+
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/cart_total")
+	public ResponseEntity<Double> getCartTotal(@RequestHeader("Authorization") String authorization_header, @RequestParam(value = "UserId", required = true) String UserID){
+		if(!user_authenticated(authorization_header)){
+			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+		}
+
+		double total = 0;
+
+		try {
+			total = database_connection.Cart_SELECT_Total(UserID);
+
+			return new ResponseEntity<Double>(total, HttpStatus.OK);
 		} 
 		catch (Exception e) {
 			System.out.println(e);

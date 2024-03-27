@@ -37,3 +37,13 @@ CREATE TABLE "fellas"."Invoice" (
     FOREIGN KEY ("Order_ID") REFERENCES "fellas"."Order" ("Order_ID"),
     FOREIGN KEY ("Product_ID") REFERENCES "fellas"."Product" ("Product_ID")
 );
+
+CREATE TABLE "fellas"."Cart" (
+    "Checkout_ID" VARCHAR(8) NOT NULL,
+    "User_ID" NVARCHAR(8) NOT NULL,
+    "Product_ID" VARCHAR(8) NOT NULL,
+    "Quantity" BIGINT NOT NULL,
+    PRIMARY KEY ("Checkout_ID", "Product_ID"),
+    FOREIGN KEY ("User_ID") REFERENCES "fellas"."User" ("User_ID"),
+    FOREIGN KEY ("Product_ID") REFERENCES "fellas"."Product" ("Product_ID")
+);
